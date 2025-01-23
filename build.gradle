@@ -24,8 +24,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'inc.prettyhatemachin.e'
-    mainClass = 'inc.prettyhatemachin.e.App.Main'
+    mainModule = 'tech.morbit'
+    mainClass = 'tech.morbit.App.Main'
 }
 
 javafx {

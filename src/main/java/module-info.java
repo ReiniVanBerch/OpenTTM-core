@@ -1,4 +1,4 @@
-module inc.prettyhatemachin.e {
+module tech.morbit {
 
     //javaFX stuff
     requires javafx.controls;
@@ -25,16 +25,14 @@ module inc.prettyhatemachin.e {
     requires java.sql;
 
 
-    exports inc.prettyhatemachin.e.App;
-    exports inc.prettyhatemachin.e.CharacterDynamic;
-    exports inc.prettyhatemachin.e.Exception;
-    exports inc.prettyhatemachin.e.TestingGrounds;
-    exports inc.prettyhatemachin.e.Tools;
-    exports inc.prettyhatemachin.e.Quality;
-    exports inc.prettyhatemachin.e.Controller;
+    exports tech.morbit.App;
+    exports tech.morbit.Character;
+    exports tech.morbit.Exception;
+    exports tech.morbit.Tools;
+    exports tech.morbit.Quality;
+    exports tech.morbit.Controller;
 
-    opens inc.prettyhatemachin.e.Controller;
-    opens inc.prettyhatemachin.e.App to javafx.fxml;
-    exports inc.prettyhatemachin.e.FuneralPyre;
+    opens tech.morbit.Controller;
+    opens tech.morbit.App to javafx.fxml;
 
 }

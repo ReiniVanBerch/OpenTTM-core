@@ -1,0 +1,43 @@
+package tech.morbit.App;
+/*----------------------------------------------------------------------------------------
+ * Copyright (c) Morbit. All rights reserved.
+ * Main Stage Loader
+ *---------------------------------------------------------------------------------------*/
+import tech.morbit.Controller.MainController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            // Loads the FXML-File
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Main.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 500, 400);
+
+            // set CSS Style
+            scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
+
+            // gets controller and sets the stage
+            MainController controller = fxmlLoader.getController();
+            controller.setStage(stage);
+            // Sets the Title and Scene
+            stage.setTitle("Digital Game Tracker - Team ka OS");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Fehler beim Laden der FXML-Datei oder CSS:");
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        launch();
+        //inc.prettyhatemachin.e.TestingGrounds.Main.App();
+    }
+}
