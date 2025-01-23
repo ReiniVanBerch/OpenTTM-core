@@ -21,13 +21,13 @@ import java.util.ArrayList;
  */
 
 
-public class CharacterDynamic {
+public class Character {
     ArrayList<Quality> qualities = new ArrayList<>();
-    public CharacterDynamic(String name) {
+    public Character(String name) {
         this.name = name.strip();
     }
 
-    public CharacterDynamic(String name, ArrayList<Quality> qualities) {
+    public Character(String name, ArrayList<Quality> qualities) {
         this(name);
         this.qualities = qualities;
     }

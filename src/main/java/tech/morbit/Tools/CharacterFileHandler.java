@@ -8,7 +8,7 @@ package tech.morbit.Tools;
  *  This file converts json files to a chacter if possible, and converts character back to json.
  */
 
-import tech.morbit.Character.CharacterDynamic;
+import tech.morbit.Character.Character;
 import tech.morbit.Exception.InvalidTypeException;
 import tech.morbit.Quality.Quality;
 import javafx.scene.control.Alert;
@@ -25,17 +25,17 @@ import java.util.ArrayList;
 
 public class CharacterFileHandler {
 
-    public CharacterDynamic getCharacter(File jsonFile) throws JSONException, IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public Character getCharacter(File jsonFile) throws JSONException, IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         String jsonContent = new String(Files.readAllBytes(jsonFile.toPath()));
         return this.getCharacter(jsonContent);
     }
 
-    public CharacterDynamic getCharacter(String jsonContent) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public Character getCharacter(String jsonContent) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
             JSONObject jsonObject = new JSONObject(jsonContent);
             return getCharacter(jsonObject);
     }
 
-    static public CharacterDynamic getCharacter(JSONObject jObj) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    static public Character getCharacter(JSONObject jObj) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
         System.out.println(jObj.toString());
         String name = jObj.getString("name");
@@ -88,10 +88,10 @@ public class CharacterFileHandler {
 
         }
 
-        return new CharacterDynamic(name, qualities);
+        return new Character(name, qualities);
     }
 
-    static public JSONObject getJSON(CharacterDynamic character) {
+    static public JSONObject getJSON(Character character) {
         if (character == null) {
             throw new IllegalArgumentException("Character object cannot be null.");
         }

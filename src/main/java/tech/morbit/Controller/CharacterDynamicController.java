@@ -12,7 +12,7 @@ package tech.morbit.Controller;
  *
  */
 
-import tech.morbit.Character.CharacterDynamic;
+import tech.morbit.Character.Character;
 import tech.morbit.Exception.InvalidTypeException;
 import tech.morbit.Quality.Quality;
 import tech.morbit.Quality.FixedValue;
@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 public class CharacterDynamicController {
 
-    private CharacterDynamic character;
+    private Character character;
     private Quality currentQuality;
 
     @FXML
@@ -218,8 +218,8 @@ public class CharacterDynamicController {
     }
 
 
-    public CharacterDynamic getCharacter() {return character;}
-    public void setCharacter(CharacterDynamic character) {this.character = character;}
+    public Character getCharacter() {return character;}
+    public void setCharacter(Character character) {this.character = character;}
 
 
 

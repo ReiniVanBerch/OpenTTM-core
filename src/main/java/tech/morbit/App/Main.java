@@ -3,6 +3,7 @@ package tech.morbit.App;
  * Copyright (c) Morbit. All rights reserved.
  * Main Stage Loader
  *---------------------------------------------------------------------------------------*/
+import tech.morbit.Controller.CharacterDynamicController;
 import tech.morbit.Controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,11 +24,11 @@ public class Main extends Application {
             // set CSS Style
             scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
 
-            // gets controller and sets the stage
-            MainController controller = fxmlLoader.getController();
-            controller.setStage(stage);
+            MainController mc = fxmlLoader.getController();
+            mc.setStage(stage);
+
             // Sets the Title and Scene
-            stage.setTitle("Digital Game Tracker - Team ka OS");
+            stage.setTitle("OpenRPG-Manager");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

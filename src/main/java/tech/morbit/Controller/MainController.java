@@ -1,7 +1,8 @@
 package tech.morbit.Controller;
 
-import tech.morbit.App.Main;
-import tech.morbit.Character.CharacterDynamic;
+import javafx.scene.control.Tab;
+import tech.morbit.Character.Character;
+import tech.morbit.TabBuilder.TabBuilder;
 import tech.morbit.Tools.CharacterFileHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -29,71 +29,28 @@ public class MainController {
     @FXML
     private Button exit;
 
-    @FXML
-    private MenuItem about;
-
-    private ArrayList<Stage> stages;
-    private ArrayList<FXMLLoader> loaders;
-    private ArrayList<CharacterDynamicController> controllersDynamic;
 
     @FXML
     public void initialize(){
-        stages = new ArrayList<>();
-        loaders = new ArrayList<>();
-        controllersDynamic = new ArrayList<>();
-
-
-        exit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                exit.setOnMouseClicked(event ->
-                        exit());
-
-            }
-        });
+        exit.setOnAction(actionEvent -> exit.setOnMouseClicked(event -> exit()));
+    }
+    public void setStage(Stage stage){
+        this.stage = stage;
     }
 
 
+    public void openCharacterDynamic(Character cd){
 
+        Tab tab = TabBuilder.createCharacterTab(cd);
 
-    public void openCharacterDynamic(CharacterDynamic cd){
-        try{
-            Stage newStage = new Stage();
-            stages.add(newStage);
-            loaders.add(new FXMLLoader(tech.morbit.App.Main.class.getResource("CharacterDynamic.fxml")));
-
-            //last index
-            int lil = loaders.size() - 1;
-            int lis = stages.size() - 1;
-
-            Scene scene = new Scene(loaders.get(lil).load(), 800, 400);
-
-            CharacterDynamicController cdc = loaders.get(lil).getController();
-
-
-            cdc.setCharacter(cd);
-            cdc.displayList();
-
-            controllersDynamic.add(cdc);
-
-
-            stages.get(lis).setTitle(cd.getName());
-            stages.get(lis).setScene(scene);
-            stages.get(lis).show();
-
-        } catch (IOException e) {
-            Alert a = new Alert(AlertType.ERROR);
-            a.setContentText("There was an Error loading this character. Something is in the IO");
-            a.show();
-
-        }
+        //IMPLEMENT THE TABPANES
+        if(this.stage.getScene() != null){}
     }
 
     public void openCharacterDynamicFileChooser() throws IOException{
 
 
         Stage saveStage = new Stage();
-
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter for text files
@@ -106,7 +63,7 @@ public class MainController {
             try {
                 CharacterFileHandler chf = new CharacterFileHandler();
 
-                CharacterDynamic cd = chf.getCharacter(file);
+                Character cd = chf.getCharacter(file);
 
                 openCharacterDynamic(cd);
             }
@@ -153,6 +110,4 @@ public class MainController {
         System.exit(0);
     }
 
-    public void setStage(Stage stage) {
-    }
 }
