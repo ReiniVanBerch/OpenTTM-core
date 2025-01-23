@@ -27,8 +27,7 @@ public class MainController {
     private Button exit;
 
     @FXML
-    private TabPane tabpane;
-
+    private TabPane tabPane;
 
     @FXML
     public void initialize(){
@@ -40,10 +39,8 @@ public class MainController {
 
 
     public void openCharacterDynamic(Character cd){
-
         Tab tab = TabBuilder.createCharacterTab(cd);
-
-        tabpane.getTabs().add(tab);
+        this.tabPane.getTabs().add(tab);
     }
 
     public void openCharacterDynamicFileChooser() throws IOException{

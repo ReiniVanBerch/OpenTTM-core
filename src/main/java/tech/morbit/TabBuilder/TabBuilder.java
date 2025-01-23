@@ -16,18 +16,21 @@ public class TabBuilder {
     public static Tab createCharacterTab(Character character) {
 
         try{
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("CharacterDynamic.fxml"));
-            System.out.println("Test:" + loader.toString());
-            CharacterTabController cdc = loader.getController();
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/tech/morbit/Main/CharacterTab.fxml"));
 
+// Load the FXML and get the HBox (or root) node.
+            HBox region = loader.load();
+
+            CharacterTabController cdc = loader.getController();
 
             cdc.setCharacter(character);
             cdc.displayList();
 
 
-            HBox region = loader.load();
-            Tab tab = new Tab(character.getName());
+            Tab tab = new Tab();
+            tab.setText(character.getName());
             tab.setContent(region);
+            return tab;
 
         } catch (IOException e) {
             e.printStackTrace();

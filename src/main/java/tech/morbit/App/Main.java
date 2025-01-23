@@ -17,8 +17,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
-            System.out.println(fxmlLoader.toString());
+            // Loads the FXML-File
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tech/morbit/Main/Main.fxml"));
+
             Scene scene = new Scene(fxmlLoader.load(), 500, 400);
 
             MainController mc = fxmlLoader.getController();
@@ -30,6 +31,8 @@ public class Main extends Application {
         } catch (IOException e) {
             System.err.println("Fehler beim Laden der FXML-Datei");
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
