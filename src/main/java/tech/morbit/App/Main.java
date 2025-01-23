@@ -1,9 +1,5 @@
 package tech.morbit.App;
-/*----------------------------------------------------------------------------------------
- * Copyright (c) Morbit. All rights reserved.
- * Main Stage Loader
- *---------------------------------------------------------------------------------------*/
-import tech.morbit.Controller.CharacterDynamicController;
+
 import tech.morbit.Controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,31 +10,26 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
     public void start(Stage stage) {
         try {
-            // Loads the FXML-File
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Main.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
+            System.out.println(fxmlLoader.toString());
             Scene scene = new Scene(fxmlLoader.load(), 500, 400);
-
-            // set CSS Style
-            scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
 
             MainController mc = fxmlLoader.getController();
             mc.setStage(stage);
 
-            // Sets the Title and Scene
             stage.setTitle("OpenRPG-Manager");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            System.err.println("Fehler beim Laden der FXML-Datei oder CSS:");
-            e.printStackTrace();
-        }
-    }
+            System.err.println("Fehler beim Laden der FXML-Datei");
 
-    public static void main(String[] args) {
-        launch();
-        //inc.prettyhatemachin.e.TestingGrounds.Main.App();
+        }
     }
 }

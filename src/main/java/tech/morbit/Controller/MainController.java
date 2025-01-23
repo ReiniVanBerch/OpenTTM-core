@@ -1,6 +1,6 @@
 package tech.morbit.Controller;
 
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
 import tech.morbit.Character.Character;
 import tech.morbit.TabBuilder.TabBuilder;
 import tech.morbit.Tools.CharacterFileHandler;
@@ -9,10 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONException;
@@ -29,6 +26,9 @@ public class MainController {
     @FXML
     private Button exit;
 
+    @FXML
+    private TabPane tabpane;
+
 
     @FXML
     public void initialize(){
@@ -43,8 +43,7 @@ public class MainController {
 
         Tab tab = TabBuilder.createCharacterTab(cd);
 
-        //IMPLEMENT THE TABPANES
-        if(this.stage.getScene() != null){}
+        tabpane.getTabs().add(tab);
     }
 
     public void openCharacterDynamicFileChooser() throws IOException{

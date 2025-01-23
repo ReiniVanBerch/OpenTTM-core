@@ -34,7 +34,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
-public class CharacterDynamicController {
+public class CharacterTabController {
 
     private Character character;
     private Quality currentQuality;

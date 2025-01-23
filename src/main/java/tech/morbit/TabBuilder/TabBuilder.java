@@ -1,13 +1,13 @@
 package tech.morbit.TabBuilder;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import tech.morbit.Character.Character;
-import tech.morbit.Controller.CharacterDynamicController;
+import tech.morbit.Controller.CharacterTabController;
+import tech.morbit.Controller.MainController;
 
-import javax.swing.plaf.synth.Region;
+
 import java.io.IOException;
 
 public class TabBuilder {
@@ -16,9 +16,9 @@ public class TabBuilder {
     public static Tab createCharacterTab(Character character) {
 
         try{
-            FXMLLoader loader = new FXMLLoader(tech.morbit.App.Main.class.getResource("CharacterDynamic.fxml"));
-
-            CharacterDynamicController cdc = loader.getController();
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("CharacterDynamic.fxml"));
+            System.out.println("Test:" + loader.toString());
+            CharacterTabController cdc = loader.getController();
 
 
             cdc.setCharacter(character);

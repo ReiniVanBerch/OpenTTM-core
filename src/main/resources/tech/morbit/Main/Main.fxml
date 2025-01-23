@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="517.0" prefWidth="861.0" styleClass="anchorpane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tech.morbit.Controller.MainController">
    <children>
-      <TabPane layoutX="4.0" prefHeight="507.0" prefWidth="853.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutX="4.0" prefHeight="507.0" prefWidth="853.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Start">
                <content>
