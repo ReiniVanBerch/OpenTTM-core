@@ -5,6 +5,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import tech.morbit.Character.Character;
 import tech.morbit.Controller.CharacterTabController;
+import tech.morbit.Controller.InitiativeTabController;
 import tech.morbit.Controller.MainController;
 
 
@@ -18,7 +19,6 @@ public class TabBuilder {
         try{
             FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/tech/morbit/Main/CharacterTab.fxml"));
 
-// Load the FXML and get the HBox (or root) node.
             HBox region = loader.load();
 
             CharacterTabController cdc = loader.getController();
@@ -36,6 +36,26 @@ public class TabBuilder {
             e.printStackTrace();
         }
 
+
+
+        return new Tab();
+    }
+
+    public static Tab createInitiativeTab(){
+        try{
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/tech/morbit/Main/InitiativeTab.fxml"));
+
+            HBox region = loader.load();
+
+
+            Tab tab = new Tab();
+            tab.setText("Initiative");
+            tab.setContent(region);
+            return tab;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         return new Tab();

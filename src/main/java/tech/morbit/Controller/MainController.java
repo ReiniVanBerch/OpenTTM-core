@@ -4,11 +4,7 @@ import javafx.scene.control.*;
 import tech.morbit.Character.Character;
 import tech.morbit.TabBuilder.TabBuilder;
 import tech.morbit.Tools.CharacterFileHandler;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -29,31 +25,46 @@ public class MainController {
     @FXML
     private TabPane tabPane;
 
+    static private ArrayList<Character> characters;
+
+
     @FXML
     public void initialize(){
         exit.setOnAction(actionEvent -> exit.setOnMouseClicked(event -> exit()));
+        characters = new ArrayList<>();
     }
+
+    public static ArrayList<Character> getCharacters(){
+        return characters;
+    }
+
     public void setStage(Stage stage){
         this.stage = stage;
     }
 
+    public void openInitiative(){
+        Tab tab = TabBuilder.createInitiativeTab();
+        tabPane.getTabs().add(tab);
+    }
 
-    public void openCharacterDynamic(Character cd){
+    public void openCharacter(Character cd){
+        characters.add(cd);
         Tab tab = TabBuilder.createCharacterTab(cd);
         this.tabPane.getTabs().add(tab);
     }
 
-    public void openCharacterDynamicFileChooser() throws IOException{
+    public void openCharacterFileChooser() throws IOException{
 
 
         Stage saveStage = new Stage();
         FileChooser fileChooser = new FileChooser();
 
-        //Set extension filter for text files
+
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Open Character", "*.json");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "\\build\\resources\\main\\sample.characterDynamic"));
         fileChooser.getExtensionFilters().add(extFilter);
 
-        //Show open dialog
+
         File file = fileChooser.showOpenDialog(saveStage);
         if (file != null) {
             try {
@@ -61,7 +72,7 @@ public class MainController {
 
                 Character cd = chf.getCharacter(file);
 
-                openCharacterDynamic(cd);
+                openCharacter(cd);
             }
             catch (InvocationTargetException ITex){
                 Alert a = new Alert(AlertType.ERROR);

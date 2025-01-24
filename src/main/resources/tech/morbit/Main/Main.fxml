@@ -5,14 +5,8 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="517.0"
-            prefWidth="861.0"
-            styleClass="anchorpane"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="tech.morbit.Controller.MainController">
+<AnchorPane prefHeight="517.0" prefWidth="861.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tech.morbit.Controller.MainController">
    <children>
       <TabPane fx:id="tabPane" layoutX="4.0" prefHeight="507.0" prefWidth="853.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -21,11 +15,8 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Button fx:id="exit" mnemonicParsing="false" prefHeight="54.0" prefWidth="74.0" text="Exit" />
-                        <Button fx:id="loadchardynamic" mnemonicParsing="false" onAction="#openCharacterDynamicFileChooser" prefHeight="34.0" prefWidth="125.0" text="Advanced Char.">
-                           <font>
-                              <Font size="4.0" />
-                           </font>
-                        </Button>
+                        <Button fx:id="loadchardynamic" mnemonicParsing="false" onAction="#openCharacterFileChooser" prefHeight="34.0" prefWidth="125.0" text="Open Character" />
+                        <Button fx:id="openInitiative" mnemonicParsing="false" onAction="#openInitiative" prefHeight="34.0" prefWidth="125.0" text="Initiative Tracker" />
                      </children>
                   </VBox>
                </content>

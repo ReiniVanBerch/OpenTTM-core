@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 
 public class Character {
+
+
     ArrayList<Quality> qualities = new ArrayList<>();
     public Character(String name) {
         this.name = name.strip();
@@ -62,6 +64,7 @@ public class Character {
     public <T extends Quality> void addQuality(T qualitiy) {
         qualities.add(qualitiy);
     }
+
 
     @Override
     public String toString() {
