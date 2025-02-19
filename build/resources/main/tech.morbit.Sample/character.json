@@ -1,0 +1,67 @@
+{
+  "name": "John Doe",
+  "qualities": [
+    {
+      "name": "Strength",
+      "type": "Integer",
+      "quality": "fixedValue",
+      "values": [10]
+    },
+    {
+      "name": "Speed",
+      "type": "Double",
+      "quality": "range",
+      "values": [3.5, 7.2]
+    },
+    {
+      "name": "Agility",
+      "type": "Integer",
+      "quality": "changingValue",
+      "values": [12]
+    },
+    {
+      "name": "Skills",
+      "type": "Quality",
+      "quality": "list",
+      "values": [
+        {
+          "name": "Stealth",
+          "type": "Boolean",
+          "quality": "fixedValue",
+          "values": [true]
+        },
+        {
+          "name": "Archery",
+          "type": "Integer",
+          "quality": "range",
+          "values": [5, 15]
+        },
+        {
+          "name": "Swordsmanship",
+          "type": "Integer",
+          "quality": "rangedValue",
+          "values": [5, 15, 10]
+        }
+      ]
+    },
+    {
+      "name": "Intelligence",
+      "type": "Quality",
+      "quality": "list",
+      "values": [
+        {
+          "name": "Problem Solving",
+          "type": "Double",
+          "quality": "changingValue",
+          "values": [8.5]
+        },
+        {
+          "name": "Memory",
+          "type": "Integer",
+          "quality": "range",
+          "values": [7, 9]
+        }
+      ]
+    }
+  ]
+}
