@@ -9,6 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONException;
+import tech.morbit.Tools.CharacterFileJsonDeserialize;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,45 +62,47 @@ public class MainController {
 
 
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Open Character", "*.json");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "\\build\\resources\\main\\sample.characterDynamic"));
         fileChooser.getExtensionFilters().add(extFilter);
 
 
         File file = fileChooser.showOpenDialog(saveStage);
         if (file != null) {
             try {
-                CharacterFileHandler chf = new CharacterFileHandler();
+                //CharacterFileHandler chf = new CharacterFileHandler();
+                Character cd = CharacterFileJsonDeserialize.getCharacter(file);
 
-                Character cd = chf.getCharacter(file);
+
 
                 openCharacter(cd);
             }
             catch (InvocationTargetException ITex){
                 Alert a = new Alert(AlertType.ERROR);
-                a.setContentText("An error occured");
+                a.setContentText(ITex.toString());
                 a.show();
             }
             catch (NoSuchMethodException NMSex){
                 Alert a = new Alert(AlertType.ERROR);
-                a.setContentText("An error occurred");
+                a.setContentText(NMSex.toString());
                 a.show();
             }
             catch (InstantiationException Iex){
                 Alert a = new Alert(AlertType.ERROR);
-                a.setContentText("An error occurred");
+                a.setContentText(Iex.toString());
                 a.show();
             }
             catch (IllegalAccessException IAex){
                 Alert a = new Alert(AlertType.ERROR);
-                a.setTitle("ERROR");
+                a.setTitle(IAex.toString());
                 a.setContentText("You aren't allowed to open this.");
                 a.show();
             }
             catch (JSONException e){
                 Alert a = new Alert(AlertType.ERROR);
-                a.setTitle("ERROR");
-                a.setContentText("Your JSON seems faulty.");
+                a.setTitle("JSON Error");
+                a.setContentText("Your JSON seems faulty\n" + e.toString());
                 a.show();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
 
         }

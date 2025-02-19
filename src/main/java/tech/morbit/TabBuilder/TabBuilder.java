@@ -3,6 +3,7 @@ package tech.morbit.TabBuilder;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import tech.morbit.Character.Character;
 import tech.morbit.Controller.CharacterTabController;
 import tech.morbit.Controller.InitiativeTabController;
@@ -12,6 +13,13 @@ import tech.morbit.Controller.MainController;
 import java.io.IOException;
 
 public class TabBuilder {
+
+    private static Tab createTab(Region region, String text){
+        Tab tab = new Tab();
+        tab.setText(text);
+        tab.setContent(region);
+        return tab;
+    }
 
 
     public static Tab createCharacterTab(Character character) {
@@ -26,18 +34,9 @@ public class TabBuilder {
             cdc.setCharacter(character);
             cdc.displayList();
 
+            return createTab(region, character.getName());
 
-            Tab tab = new Tab();
-            tab.setText(character.getName());
-            tab.setContent(region);
-            return tab;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
+        } catch (IOException e) { e.printStackTrace(); }
         return new Tab();
     }
 
@@ -47,16 +46,9 @@ public class TabBuilder {
 
             HBox region = loader.load();
 
+            return createTab(region, "Initiative");
 
-            Tab tab = new Tab();
-            tab.setText("Initiative");
-            tab.setContent(region);
-            return tab;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        } catch (IOException e) { e.printStackTrace(); }
 
         return new Tab();
     }

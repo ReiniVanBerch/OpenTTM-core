@@ -1,6 +1,9 @@
 package tech.morbit.Quality;
 
+import tech.morbit.Exception.InvalidInputException;
+
 import java.util.ArrayList;
+
 
 /**
  * @author V. Berchtold
@@ -17,81 +20,84 @@ import java.util.ArrayList;
 
 public class RangedValue extends Quality {
 
+    final public int valueCount = 3;
+
     private Object lowerBound, upperBound, value;
 
-    public RangedValue(String comment, Integer typeNumber, ArrayList<Object> rangedValue){
-        super(comment, typeNumber, rangedValue);
+    public <T> RangedValue(String name, ArrayList<T> rangedValue) throws InvalidInputException {
+        super(name);
 
-        if(rangedValue.size() == 3){
+        if(rangedValue.size() == this.valueCount &&
+            (VALID_TYPES.contains(rangedValue.getFirst().getClass()) ||
+                Quality.class.isAssignableFrom(rangedValue.getFirst().getClass())))
+        {
+            this.values = (ArrayList<Object>) rangedValue;
             this.lowerBound = rangedValue.get(0);
             this.upperBound = rangedValue.get(1);
             this.value = rangedValue.get(2);
-            /*
-            if (isComparable(range.get(0)))
-            if(checkValues(lowerBound, upperBound)){
-            */
+        } else{
+            System.out.println(name + ": " + rangedValue.getFirst().getClass() + " " + valueCount);
+            throw new InvalidInputException();
         }
+
     }
-     /*
-    public RangedValue(String name, Class<?> c,  lowerBound, Comparable upperBound, Comparable value){
-        super(name, c);
+
+    public boolean checkValues(Object lowerBound, Object upperBound, Object value){
+
+        if( lowerBound instanceof Comparable &&
+            upperBound instanceof Comparable &&
+            value instanceof Comparable<?>
+        ) {
+            Comparable lb = (Comparable) lowerBound;
+            Comparable ub = (Comparable) upperBound;
+            Comparable vl = (Comparable) value;
+
+            if(lb.compareTo(ub) >= 0 ){
+
+                if(vl.compareTo(lb) >= 0 && vl.compareTo(ub) <= 0){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
 
-        if(checkValues(lowerBound, upperBound, value)){
+    public boolean checkValues(){
+        return  checkValues(this.lowerBound, this.upperBound, this.value);
+    }
+
+    public boolean checkAndSafeValues(Object lowerBound, Object upperBound, Object value){
+        boolean check = checkValues(lowerBound, upperBound, value);
+        if(check){
             this.lowerBound = lowerBound;
             this.upperBound = upperBound;
             this.value = value;
         }
-
-
-    }
-
-
-    public boolean checkValues(Comparable lowerBound, Comparable upperBound, Comparable value){
-        try{
-            if(lowerBound.compareTo(upperBound) >= 0 ){
-
-                if(value.compareTo(lowerBound) >= 0 && value.compareTo(upperBound) <= 0){
-                    return true;
-                }
-                else {
-                    throw new InvalidInputException("The value is not between the lower and upper bound.");
-                }
-
-            }
-            else{
-                throw new InvalidInputException("The lower bound is not equal or greater than the upper bound.");
-            }
-        } catch (InvalidInputException e){
-
-            //
-            //INVALID INPUT FOR
-            //
-
-            return false;
-        }
+        return check;
     }
 
     public Object getLowerBound(){return this.lowerBound;}
     public Object getUpperBound(){return this.upperBound;}
     public Object getValue(){return this.value;}
 
-    public void setLowerBound(Comparable lowerBound){
+    public void setLowerBound(Object lowerBound){
         if(checkValues(lowerBound, this.upperBound, this.value)){
             this.lowerBound = lowerBound;
         }
     }
 
-    public void setUpperBound(Comparable upperBound){
+    public void setUpperBound(Object upperBound){
         if(checkValues(this.lowerBound, upperBound, this.value)){
             this.upperBound = upperBound;
         }
     }
 
-    public void setValue(Comparable value){
+    public void setValue(Object value){
         if(checkValues(this.lowerBound, this.upperBound, value)){
             this.value = value;
         }
     }
-    */
+
 }

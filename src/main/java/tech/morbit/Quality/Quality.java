@@ -1,9 +1,10 @@
 package tech.morbit.Quality;
 
-import tech.morbit.Exception.InvalidTypeException;
+import tech.morbit.Exception.InvalidInputException;
 import tech.morbit.Tools.TypeHelper;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * @author Morbit
@@ -18,114 +19,84 @@ import java.util.ArrayList;
  * of the different qualities is stored twice, once in the values list as in here
  * as well as there respective properties in their own classes.
  *
- *
- * There is an numerical approach via the typenumber,
- * handled by the typehelper. {@link TypeHelper}
- * That is the number in front of the definitions below.
- * Explanation still resides here.
- *
- * The whole type is represented in hexadecimal, called typeNumber, but is just 1 Byte.
- * We split the byte into two half-bytes (displayed as a hex number) where the ...
- *
- * ~1st represents the "dataType", typeInt, so whether its an type o integer, double, boolean, whatever
- * - 0# / Boolean
- * - 1# / Integers
- * - 2# / Double
- * - E# / Strings
- * - F# / Errors and Debug
- *
- *
- * ~2nd represents the "quality", qualityInt, so whether it"s a sole value, a range, a list etc.
- * - #0 - Fixed Value
- *  {@link FixedValue}
- *
- * - #1 - Changing value
- *   {@link ChangingValue}
- *
- * - #2 - Range
- *   {@link Range}
- *
- * - #3 - Range with a current value
- *   {@link RangedValue}
- *
- * - ---left open for future---
- *
- * - #E - Lists
- *   {@link ListValue}
- *
- * NOTES:
- * Some pairings between qualities and datatype don't make any practical sense, but the system will still handle it.
- * E.g. you can make a boolean range, or String ranges.
- *
- * If there is an F present int, it should represent an error in the according thing.
- * E.g. 0xFE would be a list with an error.
- *      0x1F would be an integer with an faulty quality.
- *      0xFF would be an total error, the highest tier.
- *
- *
  */
 
 
-public class Quality {
+public abstract class Quality {
 
-    private Class<? extends Quality> quality;
-    private Class<?> datatype;
-    private String comment;
-    private ArrayList<Object> values;
+    protected int valueCount;
+
+    protected static final Set<Class<?>> VALID_TYPES = Set.of(
+            Boolean.class,
+            Integer.class,
+            Double.class,
+            String.class,
+            Quality.class
+    );
+
+    protected String name;
+    protected ArrayList<Object> values;
+    protected ArrayList<Tag> tags = new ArrayList<>();
 
     TypeHelper typeHelper;
 
-    public Quality(String comment, int typeNumber, ArrayList<Object> values) {
+    public <T> Quality(
+            String name)  {
+        this.name = name;
 
-        try{
-
-            this.comment = comment;
-            this.values = values;
-
-            if(typeNumber < 0xFF) {
-
-                this.quality = TypeHelper.getQuality(typeNumber);
-                this.datatype = TypeHelper.getDataType(typeNumber);
-
-                for(int i = 0 ; i < values.size() ; i++) {
-
-                    Object obj;
-                    Object j = values.get(i);
-                    if(j.getClass() == Integer.class && datatype == Double.class) {
-                        obj = (Double) ((Integer) j).doubleValue();
-                    }else {
-                         obj = datatype.cast(j);
-                    }
-                    values.set(i, obj) ;
-                }
-            }
-            else throw new InvalidTypeException("");
-        } catch (InvalidTypeException e){
-
-            //
-            //INVALID INPUT FOR
-            //
-
-
-        }
 
     }
 
-    public int getTypeNumber() {
-        int qi = TypeHelper.getQualityInt(this.quality);
-        int ti = TypeHelper.getTypeInt(this.datatype);
-        return qi + ti;
+    public <T> Quality(
+            String name,
+            ArrayList<T> values,
+            ArrayList<Tag> tags) throws InvalidInputException {
+                this(name);
+                this.tags.addAll(tags);
     }
 
-    public void setComment(String comment){this.comment = comment;}
-    public String getComment(){return this.comment;}
+    public void setName(String name){this.name = name;}
+    public String getName(){return this.name;}
+
+
+    public Class<? extends Quality> getQuality(){return this.getClass();}
 
     public ArrayList<Object> getValues(){return this.values;}
-
-    public Class<?> getDataType(){
-        return this.datatype;
+    public Class getTypeOfValues(){
+        return this.getValues().get(0).getClass();
     }
 
+    public <T> void setValues(ArrayList<T> values) throws InvalidInputException {
+        if(values.size() == this.valueCount){
+            this.values = (ArrayList<Object>) values;
+        } else{ throw new InvalidInputException();}
+    }
+
+    //Tagging
+    public ArrayList<Tag> getTags(){return this.tags;}
+    public ArrayList<Tag> getTagsByFunctionality(boolean functionality){
+        ArrayList<Tag> tagFunc = new ArrayList<>();
+
+        for (int i = 0; i < this.tags.toArray().length; i++) {
+            if(functionality == this.tags.get(i).getFunctional()){
+                tagFunc.add(this.tags.get(i));
+            }
+        }
+        return tagFunc;
+    }
+
+    public void setTags(ArrayList<Tag> tags){this.tags = tags;}
+    public void addTag(Tag tag){this.tags.add(tag);}
+    public void addTags(ArrayList<Tag> tags){this.tags.addAll(tags);}
+
+    public void removeTag(Tag tag){this.tags.remove(tag);}
+    public void removeTags(ArrayList<Tag> tags){
+        for(Tag tag : tags){
+            this.tags.remove(tag);
+        }
+    }
+
+    //Strings
     public String getValuesAsInputString(){
         String output = "";
         for(Object value : this.values){
@@ -134,12 +105,16 @@ public class Quality {
         output = output.substring(0,output.length()-1);
         return output;
     }
-
     @Override
-    public String toString(){
-        return String.format("%s: %s - %s",this.comment, datatype.getSimpleName(), quality.getSimpleName());
+    public String toString(){return String.format("%s: %s - %s",
+            this.name,
+            getTypeOfValues().getSimpleName(),
+            this.getClass().getSimpleName());}
 
-
+    public static <T extends Quality> ArrayList<Class<? extends Quality>> getClassAndChildren(){
+        ArrayList<Class<? extends  Quality>> q = new ArrayList<>();
+        q.add(Quality.class);
+        //q
+        return q;
     }
-
 }

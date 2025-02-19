@@ -1,5 +1,7 @@
 package tech.morbit.Quality;
 
+import tech.morbit.Exception.InvalidInputException;
+
 import java.util.ArrayList;
 
 /**
@@ -17,19 +19,25 @@ import java.util.ArrayList;
 
 public class Range extends Quality {
 
+    final public int valueCount = 2;
+
     private Object lowerBound, upperBound;
 
-    public Range(String comment, Integer typeNumber, ArrayList<Object> range){
-        super(comment, typeNumber, range);
-        
-        if(range.size() == 2){
+    public <T> Range(String comment, ArrayList<T> range) throws InvalidInputException {
+        super(comment);
+
+        if(range.size() == this.valueCount &&
+                (VALID_TYPES.contains(range.getFirst().getClass()) ||
+                    Quality.class.isAssignableFrom(range.getFirst().getClass())))
+        {
+            this.values = (ArrayList<Object>) range;
             this.lowerBound = range.get(0);
             this.upperBound = range.get(1);
-            /*
-            if (isComparable(range.get(0)))
-            if(checkValues(lowerBound, upperBound)){
-            */
+        } else{
+            System.out.println(name + ": " + values.getFirst().getClass() + " " + valueCount);
+            throw new InvalidInputException();
         }
+
     }
 
 

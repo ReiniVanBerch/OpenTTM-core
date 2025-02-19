@@ -12,23 +12,39 @@ package tech.morbit.Quality;
  * A list of items, number of kills, total damage taken, other statistics.
  */
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import tech.morbit.Exception.InvalidInputException;
+import tech.morbit.Exception.InvalidTypeException;
+
 import java.util.ArrayList;
 
 public class ChangingValue extends Quality {
 
+    final public int valueCount = 1;
+
     private Object changingValue;
 
-    public ChangingValue(String comment, Integer typeNumber, ArrayList<Object> changingValue) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        super(comment, typeNumber, changingValue);
-        this.changingValue = changingValue;
+    public <T> ChangingValue(String comment, ArrayList<T> changingValue) throws InvalidInputException {
+        super(comment);
+
+        if(changingValue.size() == this.valueCount &&
+                (VALID_TYPES.contains(changingValue.getFirst().getClass()) ||
+                        Quality.class.isAssignableFrom(changingValue.getFirst().getClass())))
+        {
+            this.values = (ArrayList<Object>) changingValue;
+            this.changingValue = changingValue.get(0);
+        } else{
+            System.out.println(name + ": " + changingValue.getFirst().getClass() + " " + valueCount);
+            throw new InvalidInputException();
+        }
+
+
     }
 
     public Object getChangingValue(){return changingValue;}
-    public void setChangingValue(Object changingValue) {
-        if(changingValue.getClass() == this.changingValue.getClass()){
+
+    public void setChangingValue(Object changingValue) throws InvalidTypeException {
+        if(changingValue.getClass().equals(this.changingValue.getClass())){
             this.changingValue = changingValue;
-        }
+        } else throw new InvalidTypeException();
     }
 }

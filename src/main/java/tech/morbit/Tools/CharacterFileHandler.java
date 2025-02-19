@@ -107,9 +107,8 @@ public class CharacterFileHandler {
 
             JSONArray valuesArray = new JSONArray(quality.getValues());
 
-            qualityJson.put("comment", quality.getComment());
+            qualityJson.put("comment", quality.getName());
             qualityJson.put("values", valuesArray);
-            qualityJson.put("typeNumber", quality.getTypeNumber());
 
 
             qualitiesArray.put(qualityJson);

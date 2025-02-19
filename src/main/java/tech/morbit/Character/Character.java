@@ -56,7 +56,7 @@ public class Character {
     public ArrayList<String> getQualitiesAsString() {
         ArrayList<String> qualitiesAsString = new ArrayList<>();
         for (Quality q : this.qualities) {
-            qualitiesAsString.add(q.getComment());
+            qualitiesAsString.add(q.getName());
         }
         return qualitiesAsString;
     }

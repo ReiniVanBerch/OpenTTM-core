@@ -18,6 +18,7 @@ import tech.morbit.Quality.Quality;
 import tech.morbit.Quality.FixedValue;
 
 import tech.morbit.Tools.CharacterFileHandler;
+import tech.morbit.Tools.CharacterFileJsonSerialize;
 import tech.morbit.Tools.TypeHelper;
 
 import javafx.fxml.FXML;
@@ -66,7 +67,7 @@ public class CharacterTabController {
         ArrayList<String> qualitiesAsString = new ArrayList<>();
 
         for (int i = 0; i < qualities.size(); i++) {
-            qualitiesAsString.add(qualities.get(i).getComment());
+            qualitiesAsString.add(qualities.get(i).getName());
         }
 
         qualityList.setItems(FXCollections.observableArrayList(qualitiesAsString));
@@ -79,12 +80,7 @@ public class CharacterTabController {
 
 
 
-        qualityCommentLabel.setText(this.currentQuality.getComment());
-        try {
-            qualityTypeLabel.setText(TypeHelper.getTypingAsString(this.currentQuality.getTypeNumber()));
-        } catch (InvalidTypeException e){
-            qualityTypeLabel.setText(e.toString());
-        }
+
         ArrayList<String> valuesAsString = new ArrayList<>();
 
 
@@ -136,7 +132,7 @@ public class CharacterTabController {
 
     public void saveChange()  {
         String valuesAsString = valuesTextField.getText();
-        Class dt = currentQuality.getDataType();
+        Class dt = currentQuality.getTypeOfValues();
         Class qt = currentQuality.getClass();
 
         String[] valuesString = valuesAsString.split(";");
@@ -159,8 +155,8 @@ public class CharacterTabController {
 
 
             try {
-                Quality quality;
-                quality = TypeHelper.generateQuality(this.currentQuality.getComment(), this.currentQuality.getTypeNumber(), values);
+                Quality quality = null;
+                //quality = TypeHelper.generateQuality(this.currentQuality.getName(), casfsadfasdfurrentQuality(), values);
                 this.character.setQuality(this.character.getQualities().indexOf(this.currentQuality), quality);
             } catch (Exception e){
 
@@ -187,7 +183,7 @@ public class CharacterTabController {
 
         //Set extension filter for text files
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("SAVE CHARACTER", "*.json");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "\\build\\resources\\main\\sample.characterDynamic"));
+        //fileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "\\build\\resources\\main\\sample.characterDynamic"));
         fileChooser.getExtensionFilters().add(extFilter);
 
         //Show save file dialog
@@ -212,7 +208,7 @@ public class CharacterTabController {
 
         PrintWriter writer;
         writer = new PrintWriter(file);
-        JSONObject jso = CharacterFileHandler.getJSON(this.character);
+        JSONObject jso = CharacterFileJsonSerialize.getJSON(this.character);
         writer.println(jso.toString(4));
         writer.close();
     }
