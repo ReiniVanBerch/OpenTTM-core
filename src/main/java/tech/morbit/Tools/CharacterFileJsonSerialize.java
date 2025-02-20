@@ -24,7 +24,7 @@ public class CharacterFileJsonSerialize {
 
 
         for (Quality quality : character.getQualities()) {
-            qualitiesArray.put(quality);
+            qualitiesArray.put(decodeQuality(quality));
         }
 
         // Add qualities to the main JSON object
@@ -42,18 +42,21 @@ public class CharacterFileJsonSerialize {
         Class type = quality.getTypeOfValues();
 
         jsonQuality.put("name", quality.getName());
-        jsonQuality.put("type", type.getSimpleName());
         jsonQuality.put("quality", quality.getClass().getSimpleName());
 
         ArrayList<Object> values = quality.getValues();
 
         if(Quality.getClassAndChildren().contains(type)){
+
+            jsonQuality.put("type", "Quality");
             for (int i = 0; i < quality.getValues().size(); i++) {
                 Quality q = (Quality) quality.getValues().get(i);
                 jsonValues.put(decodeQuality(q));
             }
 
         } else{
+
+            jsonQuality.put("type", type.getSimpleName());
             for (int i = 0; i < quality.getValues().size(); i++) {
                 jsonValues.put(values.get(i));
             }

@@ -114,6 +114,11 @@ public abstract class Quality {
     public static <T extends Quality> ArrayList<Class<? extends Quality>> getClassAndChildren(){
         ArrayList<Class<? extends  Quality>> q = new ArrayList<>();
         q.add(Quality.class);
+        q.add(RangedValue.class);
+        q.add(RangedValue.class);
+        q.add(ChangingValue.class);
+        q.add(FixedValue.class);
+        q.add(ListValue.class);
         //q
         return q;
     }

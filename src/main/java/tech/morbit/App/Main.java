@@ -23,22 +23,20 @@ public class Main extends Application {
         //launch();
         try {
 
-            URL resource = Main.class.getClassLoader().getResource("tech.morbit.Sample/character.json");
-            if (resource == null) {
-                System.out.println("File not found in classpath.");
-            } else {
-                System.out.println("Found at: " + resource.getPath());
-            }
 
-            InputStream is = Main.class.getResourceAsStream("tech/morbit/Sample/character.json");
+            /*
+            InputStream is = Main.class.getResourceAsStream("tech/morbit/Main/character.json");
             if (is == null) {
                 throw new IllegalArgumentException("File not found!");
             }
             byte[] jsonData = is.readAllBytes();
             String jsonText = new String(jsonData, StandardCharsets.UTF_8);
             JSONObject jsonObject = new JSONObject(jsonText);
+            */
 
-            Character c0 = CharacterFileJsonDeserialize.getCharacter(jsonObject);
+
+
+            Character c0 = CharacterFileJsonDeserialize.getCharacter(Test.Testing());
 
             //JSONObject j1 = (CharacterFileJsonSerialize.getJSON(c0));
             //Character c1 = CharacterFileJsonDeserialize.getCharacter(j1);

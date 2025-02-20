@@ -58,11 +58,11 @@ public class CharacterFileJsonDeserialize {
     static public Quality resolveQuality(JSONObject jQuality) throws InvalidInputException, InvalidTypeException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 
         String name = jQuality.getString("name");
-        String qualityString = jQuality.getString("quality");
+        String qualityString = jQuality.getString("quality").toLowerCase();
         String typeString = jQuality.getString("type");
         JSONArray jValues = jQuality.getJSONArray("values");
 
-        System.out.println("Resolving... " + name + " - " + qualityString + " - " + typeString);
+        //System.out.println("Resolving... " + name + " - " + qualityString + " - " + typeString);
 
 
 
@@ -71,19 +71,19 @@ public class CharacterFileJsonDeserialize {
 
 
         switch (qualityString) {
-            case "fixedValue":
+            case "fixedvalue":
                 return new FixedValue(name, values);
 
-            case "changingValue":
+            case "changingvalue":
                 return new ChangingValue(name, values);
 
             case "range":
                 return new Range(name, values);
 
-            case "rangedValue":
+            case "rangedvalue":
                 return new RangedValue(name, values);
 
-            case "listValue":
+            case "listvalue":
                 return new ListValue(name, values);
 
             default:
