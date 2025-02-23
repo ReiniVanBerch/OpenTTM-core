@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -18,7 +19,26 @@
                   <Button mnemonicParsing="false" onAction="#listRemoveEntry" text="X" />
                </children>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#listAddOpenCharacters" prefHeight="25.0" prefWidth="128.0" text="Load in Characters" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#listAddOpenCharacters" prefHeight="25.0" prefWidth="128.0" text="Load in Characters" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TextField fx:id="monsterName" promptText="Monster Name" />
+                        <TextField fx:id="monsterCount" promptText="Monster Count" />
+                        <Button fx:id="listAddMonsters" mnemonicParsing="false" onAction="#listAddMonsters" prefHeight="25.0" prefWidth="128.0" text="Create Monsters" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

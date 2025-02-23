@@ -48,6 +48,11 @@ public class MainController {
         tabPane.getTabs().add(tab);
     }
 
+    public void openCharacterBuilder(){
+        Tab tab = TabBuilder.createCharacterBuilderTab();
+        tabPane.getTabs().add(tab);
+    }
+
     public void openCharacter(Character cd){
         characters.add(cd);
         Tab tab = TabBuilder.createCharacterTab(cd);

@@ -13,13 +13,10 @@ package tech.morbit.Controller;
  */
 
 import tech.morbit.Character.Character;
-import tech.morbit.Exception.InvalidTypeException;
 import tech.morbit.Quality.Quality;
 import tech.morbit.Quality.FixedValue;
 
-import tech.morbit.Tools.CharacterFileHandler;
 import tech.morbit.Tools.CharacterFileJsonSerialize;
-import tech.morbit.Tools.TypeHelper;
 
 import javafx.fxml.FXML;
 
@@ -37,24 +34,24 @@ import java.util.ArrayList;
 
 public class CharacterTabController {
 
-    private Character character;
-    private Quality currentQuality;
+    protected Character character;
+    protected Quality currentQuality;
 
     @FXML
-    private ListView<String> qualityList;
+    protected TreeView<Quality> qualityTreeView;
     @FXML
-    private ListView<String> qualityValuesList;
+    protected ListView<Object> qualityValueListView;
 
     @FXML
-    private TextField valuesTextField;
+    protected TextField valuesTextField;
 
     @FXML
-    private Button qualityButton;
+    protected Button qualityButton;
 
     @FXML
-    private Label qualityCommentLabel;
+    protected Label qualityCommentLabel;
     @FXML
-    private Label qualityTypeLabel;
+    protected Label qualityTypeLabel;
 
 
     @FXML
@@ -62,37 +59,63 @@ public class CharacterTabController {
 
     }
 
-    public void displayList(){
-        ArrayList<Quality> qualities = this.character.getQualities();
-        ArrayList<String> qualitiesAsString = new ArrayList<>();
+    public void displayList() {
 
-        for (int i = 0; i < qualities.size(); i++) {
-            qualitiesAsString.add(qualities.get(i).getName());
+        ArrayList<Quality> qualities = this.character.getQualities();
+
+        qualityTreeView.setShowRoot(false);
+
+        // Root (invisible)
+        try{
+            ArrayList a = new ArrayList();
+            a.add(0);
+            TreeItem<Quality> rootItem = new TreeItem<>(new FixedValue("root", a));
+
+            rootItem.setExpanded(true);
+
+            // Build Tree
+            for (Quality quality : qualities) {
+                rootItem.getChildren().add(resolveQuality(quality));
+            }
+
+            qualityTreeView.setRoot(rootItem);
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
-        qualityList.setItems(FXCollections.observableArrayList(qualitiesAsString));
+    }
+
+    public TreeItem<Quality> resolveQuality(Quality quality){
+        TreeItem<Quality> qualityItem = new TreeItem<>(quality);
+        for (Object value : quality.getValues()) {
+
+            if(value instanceof Quality){
+                Quality q = (Quality) value;
+
+                TreeItem<Quality> valueItem = new TreeItem<>();
+                qualityItem.getChildren().add(resolveQuality(q));
+            }
+
+
+        }
+        return qualityItem;
 
     }
 
     public void loadQuality(){
-        int index = qualityList.getSelectionModel().getSelectedIndex();
-        this.currentQuality = this.character.getQualities().get(index);
+        TreeItem<Quality> selection = qualityTreeView.getSelectionModel().getSelectedItem();
 
+        selection.setExpanded(true);
+        Object obj = qualityValueListView.getSelectionModel().getSelectedItem();
 
+        this.currentQuality = selection.getValue();
 
-
-        ArrayList<String> valuesAsString = new ArrayList<>();
-
-
-        for(Object value : this.currentQuality.getValues()){
-            valuesAsString.add(value.toString());
-        }
-        qualityValuesList.setItems(FXCollections.observableArrayList(valuesAsString));
-
+        qualityValueListView.setItems(FXCollections.observableArrayList(this.currentQuality.getValues()));
         valuesTextField.setText(this.currentQuality.getValuesAsInputString());
 
-        qualityButton.setDisable(this.currentQuality.getClass().equals(FixedValue.class));
 
+        valuesTextField.setEditable(!selection.getChildren().isEmpty());
+        qualityButton.setDisable(this.currentQuality.getClass().equals(FixedValue.class));
     }
 
     public Object dataTypeChecker(Class c, String input){

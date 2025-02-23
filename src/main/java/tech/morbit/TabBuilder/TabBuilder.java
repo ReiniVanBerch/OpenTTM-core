@@ -40,6 +40,22 @@ public class TabBuilder {
         return new Tab();
     }
 
+    public static Tab createCharacterBuilderTab() {
+        try{
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/tech/morbit/Main/CharacterBuilderTab.fxml"));
+
+            HBox region = loader.load();
+
+            CharacterTabController cdc = loader.getController();
+
+
+
+            return createTab(region, "Builder");
+
+        } catch (IOException e) { e.printStackTrace(); }
+        return new Tab();
+    }
+
     public static Tab createInitiativeTab(){
         try{
             FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/tech/morbit/Main/InitiativeTab.fxml"));

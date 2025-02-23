@@ -40,11 +40,8 @@ public abstract class Quality {
 
     TypeHelper typeHelper;
 
-    public <T> Quality(
-            String name)  {
+    public <T> Quality(String name)  {
         this.name = name;
-
-
     }
 
     public <T> Quality(
@@ -106,10 +103,7 @@ public abstract class Quality {
         return output;
     }
     @Override
-    public String toString(){return String.format("%s: %s - %s",
-            this.name,
-            getTypeOfValues().getSimpleName(),
-            this.getClass().getSimpleName());}
+    public String toString(){return getClass().getName();}
 
     public static <T extends Quality> ArrayList<Class<? extends Quality>> getClassAndChildren(){
         ArrayList<Class<? extends  Quality>> q = new ArrayList<>();

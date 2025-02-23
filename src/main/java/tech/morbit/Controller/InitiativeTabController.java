@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import tech.morbit.Character.Character;
 
 import java.util.ArrayList;
@@ -15,6 +16,12 @@ public class InitiativeTabController {
 
     @FXML
     private ListView<String> listInvolved;
+
+    @FXML
+    private TextField monsterName;
+
+    @FXML
+    private TextField monsterCount;
 
     @FXML
     public void initialize(){
@@ -46,7 +53,7 @@ public class InitiativeTabController {
 
             if (result.isPresent() && result.get() == buttonYes) {
                 System.out.println("Cleaning out the closet...");
-                listInvolved.getItems().removeAll(listInvolved.getItems());
+                listInvolved.getItems().clear();
             }
         }
 
@@ -54,6 +61,34 @@ public class InitiativeTabController {
         for(Character character : characters){
             listInvolved.getItems().add(character.getName());
         };
+    }
+
+    public void listAddMonsters(){
+        try{
+            String c = monsterCount.getText();
+            int count = Integer.parseInt(c);
+
+            String name = monsterName.getText();
+
+            if(name != null && !name.isEmpty()){
+                for (int i = 1; i < count+1; i++) {
+                    String output = String.format("%s #%d", name, i);
+                    listInvolved.getItems().add(output);
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("No valid String entered.");
+                alert.setContentText("Please enter a valid string");
+                alert.show();
+            }
+
+
+        } catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Not Integer count entered.");
+            alert.setContentText("Please enter a valid integer");
+            alert.show();
+        }
     }
 
     public void listMoveEntryUp(){listMoveEntry(false);}
