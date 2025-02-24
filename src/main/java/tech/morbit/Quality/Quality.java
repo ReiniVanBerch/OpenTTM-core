@@ -24,7 +24,7 @@ import java.util.Set;
 
 public abstract class Quality {
 
-    protected int valueCount;
+    static final protected int valueCount = 0;
 
     protected static final Set<Class<?>> VALID_TYPES = Set.of(
             Boolean.class,
@@ -54,6 +54,8 @@ public abstract class Quality {
 
     public void setName(String name){this.name = name;}
     public String getName(){return this.name;}
+
+    static public int getValueCount(){return valueCount;}
 
 
     public Class<? extends Quality> getQuality(){return this.getClass();}
@@ -103,7 +105,7 @@ public abstract class Quality {
         return output;
     }
     @Override
-    public String toString(){return getClass().getName();}
+    public String toString(){return getClass().getSimpleName();}
 
     public static <T extends Quality> ArrayList<Class<? extends Quality>> getClassAndChildren(){
         ArrayList<Class<? extends  Quality>> q = new ArrayList<>();

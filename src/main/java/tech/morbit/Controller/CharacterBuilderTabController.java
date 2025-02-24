@@ -46,7 +46,13 @@ public class CharacterBuilderTabController extends CharacterTabController{
         dataTypeChoiceBox.getItems().addAll(boolean.class, int.class, double.class, String.class, Quality.class);
     }
 
-    public void addQuality() {
+    public void saveQuality() {
+        Class dataType = dataTypeChoiceBox.getValue();
+        Class<? extends Quality> qualityType = qualityTypeChoiceBox.getValue();
+
+        if(dataType.equals(Quality.class)){
+            //qualityType.get
+        }
 
 
     }

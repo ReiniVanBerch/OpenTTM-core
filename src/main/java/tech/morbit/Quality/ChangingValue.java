@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ChangingValue extends Quality {
 
-    final public int valueCount = 1;
+    static final public int valueCount = 1;
 
     private Object changingValue;
 
