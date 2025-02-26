@@ -13,6 +13,7 @@ package tech.morbit.Controller;
  */
 
 import tech.morbit.Character.Character;
+import tech.morbit.Exception.InvalidInputException;
 import tech.morbit.Quality.Quality;
 import tech.morbit.Quality.FixedValue;
 
@@ -53,10 +54,13 @@ public class CharacterTabController {
     @FXML
     protected Label qualityTypeLabel;
 
+    protected TreeItem<Quality> rootItem;
 
     @FXML
-    public void initialize(){
-
+    public void initialize() throws InvalidInputException {
+        ArrayList a = new ArrayList();
+        a.add(0);
+        rootItem = new TreeItem<>(new FixedValue("root", a));
     }
 
     public void displayList() {
@@ -67,9 +71,8 @@ public class CharacterTabController {
 
         // Root (invisible)
         try{
-            ArrayList a = new ArrayList();
-            a.add(0);
-            TreeItem<Quality> rootItem = new TreeItem<>(new FixedValue("root", a));
+
+
 
             rootItem.setExpanded(true);
 
