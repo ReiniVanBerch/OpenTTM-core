@@ -66,9 +66,9 @@ public abstract class Quality {
     }
 
     public <T> void setValues(ArrayList<T> values) throws InvalidInputException {
-        if(values.size() == this.valueCount){
+        if(values.size() == valueCount){
             this.values = (ArrayList<Object>) values;
-        } else{ throw new InvalidInputException();}
+        } else{ throw new InvalidInputException("Invalid number of values"); }
     }
 
     //Tagging

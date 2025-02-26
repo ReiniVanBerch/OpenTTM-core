@@ -22,27 +22,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         //launch();
         try {
-
-
-            /*
-            InputStream is = Main.class.getResourceAsStream("tech/morbit/Main/character.json");
-            if (is == null) {
-                throw new IllegalArgumentException("File not found!");
-            }
-            byte[] jsonData = is.readAllBytes();
-            String jsonText = new String(jsonData, StandardCharsets.UTF_8);
-            JSONObject jsonObject = new JSONObject(jsonText);
-            */
-
-
-
-            Character c0 = CharacterFileJsonDeserialize.getCharacter(Test.Testing());
-
-            //JSONObject j1 = (CharacterFileJsonSerialize.getJSON(c0));
-            //Character c1 = CharacterFileJsonDeserialize.getCharacter(j1);
-            System.out.println(c0.getName());
-
-            System.out.println(CharacterFileJsonSerialize.getJSON(c0));
+            //just launching the application. Trying cause no major error handling 2 date.
             launch();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -50,7 +30,6 @@ public class Main extends Application {
             System.out.println("the end.");
         }
     }
-
 
     @Override
     public void start(Stage stage) {

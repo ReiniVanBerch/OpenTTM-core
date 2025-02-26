@@ -66,15 +66,27 @@ public class InitiativeTabController {
     public void listAddMonsters(){
         try{
             String c = monsterCount.getText();
-            int count = Integer.parseInt(c);
+            int count;
+
+
+            if(!c.isEmpty()){
+                count = Integer.parseInt(c);
+            } else{
+                count = 0;
+            }
 
             String name = monsterName.getText();
 
             if(name != null && !name.isEmpty()){
-                for (int i = 1; i < count+1; i++) {
-                    String output = String.format("%s #%d", name, i);
-                    listInvolved.getItems().add(output);
+                if(count == 0){
+                    listInvolved.getItems().add(name);
+                }else {
+                    for (int i = 1; i < count+1; i++) {
+                        String output = String.format("%s #%d", name, i);
+                        listInvolved.getItems().add(output);
+                    }
                 }
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("No valid String entered.");
