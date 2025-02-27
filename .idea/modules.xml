@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GameTracker.main.iml" filepath="$PROJECT_DIR$/.idea/modules/GameTracker.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.json/GameTracker.org.json.iml" filepath="$PROJECT_DIR$/.idea/modules/org.json/GameTracker.org.json.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.json/GameTracker.org.json.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.json/GameTracker.org.json.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GameTracker.test.iml" filepath="$PROJECT_DIR$/.idea/modules/GameTracker.test.iml" />
+    </modules>
+  </component>
+</project>

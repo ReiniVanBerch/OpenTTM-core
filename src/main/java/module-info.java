@@ -23,6 +23,7 @@ module tech.morbit {
     requires jdk.jdi;
     requires java.desktop;
     requires java.sql;
+    requires annotations;
 
 
     exports tech.morbit.App;

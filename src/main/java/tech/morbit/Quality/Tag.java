@@ -5,7 +5,12 @@ public class Tag {
     private boolean functional = false;
 
     public Tag(String text){
-        this.text = text;
+        if(!text.trim().isEmpty()){
+            this.text = text.trim();
+        } else{
+            throw new NullPointerException("Text is empty");
+        }
+
     }
 
     public Tag(String text, boolean functional){
