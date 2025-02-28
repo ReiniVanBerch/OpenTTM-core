@@ -1,7 +1,8 @@
 package tech.morbit.Quality;
 
 import tech.morbit.Exception.InvalidInputException;
-import tech.morbit.Tools.TypeHelper;
+import tech.morbit.Functional.Functional;
+import tech.morbit.Tag.Tag;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -37,8 +38,9 @@ public abstract class Quality {
     protected String name;
     protected ArrayList<Object> values;
     protected ArrayList<Tag> tags = new ArrayList<>();
+    protected ArrayList<Functional> functionals = new ArrayList<>();
 
-    TypeHelper typeHelper;
+
 
     public <T> Quality(String name)  {
         this.name = name;
@@ -73,16 +75,7 @@ public abstract class Quality {
 
     //Tagging
     public ArrayList<Tag> getTags(){return this.tags;}
-    public ArrayList<Tag> getTagsByFunctionality(boolean functionality){
-        ArrayList<Tag> tagFunc = new ArrayList<>();
-
-        for (int i = 0; i < this.tags.toArray().length; i++) {
-            if(functionality == this.tags.get(i).getFunctional()){
-                tagFunc.add(this.tags.get(i));
-            }
-        }
-        return tagFunc;
-    }
+    public ArrayList<Functional> getFunctionalTags(){return this.functionals;}
 
     public void setTags(ArrayList<Tag> tags){this.tags = tags;}
     public void addTag(Tag tag){this.tags.add(tag);}
