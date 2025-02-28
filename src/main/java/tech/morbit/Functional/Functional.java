@@ -1,8 +1,11 @@
 package tech.morbit.Functional;
 
+import java.util.ArrayList;
+
 public interface Functional {
 
-    void functional();
+    //Functional()
+
     void apply();
 
 

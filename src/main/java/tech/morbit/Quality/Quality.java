@@ -75,7 +75,7 @@ public abstract class Quality {
 
     //Tagging
     public ArrayList<Tag> getTags(){return this.tags;}
-    public ArrayList<Functional> getFunctionalTags(){return this.functionals;}
+    public ArrayList<Functional> getFunctionals(){return this.functionals;}
 
     public void setTags(ArrayList<Tag> tags){this.tags = tags;}
     public void addTag(Tag tag){this.tags.add(tag);}

@@ -1,4 +1,4 @@
-package tech.morbit.Quality;
+package tech.morbit.Tag;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
