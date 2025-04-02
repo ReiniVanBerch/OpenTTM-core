@@ -37,7 +37,7 @@ public class Die implements Functional {
         System.out.println("Roll Result: " + rollDice(input));
 
         input = "5d8!";
-        //System.out.println("Roll Result: " + rollDice(input));
+        System.out.println("Roll Result: " + rollDice(input));
     }
 
     public static int rollDice(String input) {
@@ -45,7 +45,7 @@ public class Die implements Functional {
         input = input.replaceAll("\\s", "");
 
         // Regular expression to parse the dice notation
-        Pattern pattern = Pattern.compile("(\\d*)d(\\d+)([a-zA-Z\\d]*)");
+        Pattern pattern = Pattern.compile("(\\d*)d(\\d+)([a-zA-Z\\d+*!-]*)");
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {
