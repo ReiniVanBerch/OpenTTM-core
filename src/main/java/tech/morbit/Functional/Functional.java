@@ -6,6 +6,7 @@ public interface Functional {
 
     //Functional()
 
+
     void apply();
 
 
