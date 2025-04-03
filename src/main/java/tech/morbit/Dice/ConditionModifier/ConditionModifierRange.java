@@ -1,12 +1,17 @@
 package tech.morbit.Dice.ConditionModifier;
 
 public class ConditionModifierRange implements ConditionModifier {
-    /**
-     * @param roll
-     * @return
-     */
+
+    ConditionModifier boundOne, boundTwo;
+
+    //IF wrongly assigned, this will  always return false
+    ConditionModifierRange(ConditionModifier boundOne, ConditionModifier boundTwo) {
+        this.boundOne = boundOne;
+        this.boundTwo = boundTwo;
+    }
+
     @Override
     public boolean check(int roll) {
-        return false;
+        return boundOne.check(roll) && boundTwo.check(roll);
     }
 }

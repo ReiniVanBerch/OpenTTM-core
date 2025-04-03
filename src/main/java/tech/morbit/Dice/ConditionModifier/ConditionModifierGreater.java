@@ -1,17 +1,15 @@
 package tech.morbit.Dice.ConditionModifier;
 
 public class ConditionModifierGreater implements ConditionModifier {
-    int number;
-    public ConditionModifierGreater(int number) {
-        this.number = number;
+
+    int target;
+
+    public ConditionModifierGreater(int target) {
+        this.target = target;
     }
 
-    /**
-     * @param roll
-     * @return
-     */
     @Override
     public boolean check(int roll) {
-        return roll > this.number;
+        return roll > this.target;
     }
 }

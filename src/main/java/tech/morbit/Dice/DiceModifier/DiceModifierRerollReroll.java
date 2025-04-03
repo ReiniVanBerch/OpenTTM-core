@@ -1,24 +1,12 @@
 package tech.morbit.Dice.DiceModifier;
 
 import tech.morbit.Dice.Dice;
+import tech.morbit.Dice.DiceModifier.After.DiceModifierAfter;
 
 import java.util.List;
 
-public class DiceModifierRerollReroll implements DiceModifier {
-    /**
-     * @param dice
-     */
-    @Override
-    public void beforeRoll(Dice dice) {
-
-    }
-
-    /**
-     * @param dice
-     * @param rolls
-     */
-    @Override
-    public void afterRoll(Dice dice, List<Integer> rolls) {
-
+public class DiceModifierRerollReroll implements DiceModifierAfter {
+    public List<Integer> apply(List<Integer> roll){
+        return roll;
     }
 }

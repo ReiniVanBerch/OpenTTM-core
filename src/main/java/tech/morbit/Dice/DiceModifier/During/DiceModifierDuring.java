@@ -1,15 +1,12 @@
-package tech.morbit.Dice.DiceModifier;
+package tech.morbit.Dice.DiceModifier.During;
 
 import tech.morbit.Dice.ConditionModifier.ConditionModifier;
 import tech.morbit.Dice.ConditionModifier.ConditionModifierTrue;
-import tech.morbit.Dice.Dice;
 
 import java.util.List;
 
-public interface DiceModifier {
+public interface DiceModifierDuring {
 
     ConditionModifier conditionModifier = new ConditionModifierTrue();
-
-    void beforeRoll(Dice dice);
-    void afterRoll(Dice dice, List<Integer> rolls);
+    int apply(int roll);
 }

@@ -1,5 +1,8 @@
 package tech.morbit.Dice;
 
+import tech.morbit.Dice.DiceModifier.After.DiceModifierAfter;
+import tech.morbit.Dice.DiceModifier.During.DiceModifierDuring;
+
 import java.util.*;
 
 public class Dice {
@@ -14,11 +17,19 @@ public class Dice {
 
     private int numDice;
     private int sides;
+
+    List<Integer> rolls;
+
+    List<DiceModifierDuring> modifiersDuring;
+    List<DiceModifierAfter> modifiersAfter;
+
     private Random random = new Random();
 
     public Dice(int numDice, int sides) {
         this.numDice = numDice;
         this.sides = sides;
+
+        this.rolls = new ArrayList<>();
 
         /*
         // Handle modifiers (keep/drop, rerolls, etc.)
@@ -33,24 +44,40 @@ public class Dice {
 
 
     public int roll() {
-        int total, current;
+        this.rolls.clear();
+
+        int total, roll;
         total = 0;
         for (int i = 0; i < numDice; i++) {
-            current = (random.nextInt(sides) + 1);
+            roll = (random.nextInt(sides) + 1);
+
+            roll = applyModifiersDuring(roll);
 
 
-
-            total += current;
+            total += roll;
         }
+
+        applyModifiersAfter(rolls);
+
         return total;
     }
 
 
-
-
-    private static int rollDie(int sides) {
-        return (int) (Math.random() * sides) + 1;
+    private int applyModifiersDuring(int roll){
+        int sum = 0;
+        for (int i = 0; i < modifiersDuring.size(); i++) {
+            sum += modifiersDuring.get(i).apply(roll);
+        }
+        return sum;
     }
+
+    private List<Integer> applyModifiersAfter(List<Integer> rolls) {
+        for (int i = 0; i < modifiersAfter.size(); i++) {
+            modifiersAfter.get(i).apply(rolls);
+        }
+        return rolls;
+    }
+
 
 
 }
