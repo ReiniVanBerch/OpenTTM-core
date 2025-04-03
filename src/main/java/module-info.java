@@ -14,4 +14,7 @@ module tech.morbit {
     exports tech.morbit.Quality;
     exports tech.morbit.Tag;
     exports tech.morbit.Functional;
+    exports tech.morbit.Dice;
+    exports tech.morbit.Dice.ConditionModifier;
+    exports tech.morbit.Dice.DiceModifier;
 }
