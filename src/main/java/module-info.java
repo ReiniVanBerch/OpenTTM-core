@@ -17,6 +17,8 @@ module tech.morbit {
     exports tech.morbit.Dice;
     exports tech.morbit.Dice.ConditionModifier;
     exports tech.morbit.Dice.DiceModifier;
-    exports tech.morbit.Dice.DiceModifier.After;
-    exports tech.morbit.Dice.DiceModifier.During;
+    exports tech.morbit.Dice.DiceModifier.DiceModifierAfter;
+    exports tech.morbit.Dice.DiceModifier.DiceModifierDuring;
+    exports tech.morbit.Dice.DiceModifier.DiceModifierFinal;
+    exports tech.morbit.Dice.DiceModifier.DiceModifierCollector;
 }
