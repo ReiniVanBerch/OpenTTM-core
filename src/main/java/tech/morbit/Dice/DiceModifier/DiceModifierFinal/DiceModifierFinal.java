@@ -2,32 +2,30 @@ package tech.morbit.Dice.DiceModifier.DiceModifierFinal;
 
 import tech.morbit.Dice.ConditionModifier.ConditionModifier;
 import tech.morbit.Dice.ConditionModifier.ConditionModifierTrue;
+import tech.morbit.Dice.DiceModifier.DiceModifier;
 
-public abstract class DiceModifierFinal {
+public abstract class DiceModifierFinal extends DiceModifier {
 
     protected int number;
     protected ConditionModifier conditionModifier = new ConditionModifierTrue();
 
 
-    DiceModifierFinal(int number){
+    public DiceModifierFinal(ConditionModifier conditionModifier) {
+        super(conditionModifier);
+    }
+
+    public DiceModifierFinal(int number){
+
         this.number = number;
     }
 
-    DiceModifierFinal(int number, ConditionModifier conditionModifier) {
+    public DiceModifierFinal(int number, ConditionModifier conditionModifier) {
         this(number);
         this.conditionModifier = conditionModifier;
     }
 
-    public ConditionModifier getConditionModifier() {
-        return conditionModifier;
-    }
-
     public int getNumber() {
         return number;
-    }
-
-    public void setConditionModifier(ConditionModifier conditionModifier) {
-        this.conditionModifier = conditionModifier;
     }
 
     public void setNumber(int number) {
@@ -37,7 +35,7 @@ public abstract class DiceModifierFinal {
 
     public abstract int apply(int collected);
 
-    boolean check(int collected){
+    public boolean check(int collected){
         return this.conditionModifier.check(collected);
     }
 
