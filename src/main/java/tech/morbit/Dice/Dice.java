@@ -20,14 +20,14 @@ public class Dice {
     private int numDice;
     private int sides;
 
-    ArrayList<Integer> rolls;
+    private ArrayList<Integer> rolls;
 
-    List<DiceModifierDuring> modifiersDuring;
-    List<DiceModifierAfter> modifiersAfter;
-    DiceModifierCollector modifierCollector;
-    List<DiceModifierFinal> modifiersFinal;
+    private List<DiceModifierDuring> modifiersDuring;
+    private List<DiceModifierAfter> modifiersAfter;
+    private DiceModifierCollector modifierCollector;
+    private List<DiceModifierFinal> modifiersFinal;
 
-    private Random random = new Random();
+    final private Random random = new Random();
 
     public Dice(int numDice, int sides) {
         this.numDice = numDice;
@@ -53,6 +53,54 @@ public class Dice {
 
         rolls = applyModifiersAfter(rolls);
         return rolls;
+    }
+
+    public List<DiceModifierFinal> getModifiersFinal() {
+        return modifiersFinal;
+    }
+
+    public void setModifiersFinal(List<DiceModifierFinal> modifiersFinal) {
+        this.modifiersFinal = modifiersFinal;
+    }
+
+    public DiceModifierCollector getModifierCollector() {
+        return modifierCollector;
+    }
+
+    public void setModifierCollector(DiceModifierCollector modifierCollector) {
+        this.modifierCollector = modifierCollector;
+    }
+
+    public List<DiceModifierAfter> getModifiersAfter() {
+        return modifiersAfter;
+    }
+
+    public void setModifiersAfter(List<DiceModifierAfter> modifiersAfter) {
+        this.modifiersAfter = modifiersAfter;
+    }
+
+    public List<DiceModifierDuring> getModifiersDuring() {
+        return modifiersDuring;
+    }
+
+    public void setModifiersDuring(List<DiceModifierDuring> modifiersDuring) {
+        this.modifiersDuring = modifiersDuring;
+    }
+
+    public int getSides() {
+        return sides;
+    }
+
+    public void setSides(int sides) {
+        this.sides = sides;
+    }
+
+    public int getNumDice() {
+        return numDice;
+    }
+
+    public void setNumDice(int numDice) {
+        this.numDice = numDice;
     }
 
     //If you just need a numeric result of the given rolls
