@@ -1,9 +1,7 @@
-package tech.morbit.Dice.DiceModifier.During;
+package tech.morbit.Dice.DiceModifier.DiceModifierDuring;
 
 import tech.morbit.Dice.ConditionModifier.ConditionModifier;
 import tech.morbit.Dice.ConditionModifier.ConditionModifierTrue;
-
-import java.util.List;
 
 public interface DiceModifierDuring {
 

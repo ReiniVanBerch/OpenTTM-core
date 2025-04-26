@@ -1,6 +1,4 @@
-package tech.morbit.Dice.DiceModifier.During;
-
-import java.util.List;
+package tech.morbit.Dice.DiceModifier.DiceModifierDuring;
 
 public class DiceModifierDuringExplodeCount implements DiceModifierDuring {
     @Override
