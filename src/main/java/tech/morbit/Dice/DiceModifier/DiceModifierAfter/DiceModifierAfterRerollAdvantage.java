@@ -1,4 +1,4 @@
-package tech.morbit.Dice.DiceModifier.After;
+package tech.morbit.Dice.DiceModifier.DiceModifierAfter;
 
 import java.util.List;
 
