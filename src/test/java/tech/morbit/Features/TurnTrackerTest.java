@@ -23,7 +23,7 @@ public class TurnTrackerTest {
     @DisplayName("Empty Constructor")
     public void test_TurnTracker_Constructor() {
         TurnTracker turnTracker = new TurnTracker();
-        ArrayList<Object> actual =turnTracker.getEntities();
+        ArrayList<Object> actual = turnTracker.getEntities();
 
         ArrayList<Object> expected = new ArrayList<>();
         assertEquals(actual, expected);
@@ -35,7 +35,7 @@ public class TurnTrackerTest {
         ArrayList<Object> expected = new ArrayList<>(Arrays.asList("Fire", "Water"));
 
         TurnTracker turnTracker = new TurnTracker(expected);
-        ArrayList<Object> actual =turnTracker.getEntities();
+        ArrayList<Object> actual = turnTracker.getEntities();
 
         assertEquals(actual, expected);
     }
