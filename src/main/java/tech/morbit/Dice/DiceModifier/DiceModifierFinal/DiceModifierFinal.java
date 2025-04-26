@@ -35,8 +35,8 @@ public abstract class DiceModifierFinal extends DiceModifier {
 
     public abstract int apply(int collected);
 
-    public boolean check(int collected){
-        return this.conditionModifier.check(collected);
+    public boolean check(int check){
+        return this.conditionModifier.check(check);
     }
 
 }
