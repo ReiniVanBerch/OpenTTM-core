@@ -6,9 +6,9 @@ import tech.morbit.Dice.ConditionModifier.ConditionModifierTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class DiceModifierAfter {
+public interface DiceModifierAfter {
     ConditionModifier conditionModifier = new ConditionModifierTrue();
 
-    ArrayList<Integer> apply(ArrayList<Integer> rolls);
+    public abstract ArrayList<Integer> apply(ArrayList<Integer> rolls);
 
 }

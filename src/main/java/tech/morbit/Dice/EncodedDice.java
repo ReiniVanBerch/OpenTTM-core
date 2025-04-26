@@ -21,9 +21,9 @@ public class EncodedDice extends Dice{
     }
 
     public String singleRollName(){
-        int res = singleRoll();
+        int res = getSingleRoll();
         try{
-            return names.get(res);
+            return names.get(res+1);
         }
         catch(IndexOutOfBoundsException e){
             return "";
