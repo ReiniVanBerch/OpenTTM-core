@@ -11,7 +11,7 @@ public class ConditionModifierRange implements ConditionModifier {
     }
 
     @Override
-    public boolean check(int roll) {
+    public  <T extends Comparable<T>> boolean check(T roll) {
         return boundOne.check(roll) && boundTwo.check(roll);
     }
 }

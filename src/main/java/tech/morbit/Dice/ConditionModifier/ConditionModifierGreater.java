@@ -2,14 +2,14 @@ package tech.morbit.Dice.ConditionModifier;
 
 public class ConditionModifierGreater implements ConditionModifier {
 
-    int target;
+    private Comparable target;
 
-    public ConditionModifierGreater(int target) {
+    public <T extends Comparable<T>> ConditionModifierGreater(T target) {
         this.target = target;
     }
 
     @Override
-    public boolean check(int roll) {
-        return roll > this.target;
+    public <T extends Comparable<T>> boolean check(T roll) {
+        return roll.compareTo((T) this.target) > 0;
     }
 }
