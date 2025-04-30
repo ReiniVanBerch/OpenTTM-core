@@ -28,7 +28,7 @@ public abstract class Quality {
 
     static final protected int valueCount = 0;
 
-    protected static final Set<Class<?>> VALID_TYPES = Set.of(
+    protected static final Set<Class> VALID_TYPES = Set.of(
             Boolean.class,
             Integer.class,
             Double.class,
@@ -124,8 +124,10 @@ public abstract class Quality {
     }
 
     public static <T extends Quality> Set<Class<? extends Quality>> getClassAndChildren(){
-
-
         return CLASS_AND_CHILDREN;
+    }
+
+    public static <T extends Quality> Set<Class> getValidTypes(){
+        return  VALID_TYPES;
     }
 }

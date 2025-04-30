@@ -5,7 +5,8 @@ import tech.morbit.Quality.Quality;
 import java.util.Set;
 
 public class FunctionalTag extends Tag {
-    private String description;;
+    private Set<Class> validTypes;
+    private Set<Class<? extends Quality>> validQualities;
 
     /**
      * FunctionalTags will have the oppurtunity to assign this a value or doing.
@@ -15,17 +16,28 @@ public class FunctionalTag extends Tag {
      * E.g. "HP" marks an Quality as the life of the character, takes in range, but can handle both int and double.
      */
 
-    private final Set<Class<?>> VALID_TYPES = Set.of(
-            Boolean.class,
-            Integer.class,
-            Double.class,
-            String.class,
-            Quality.class
-    );
 
     public FunctionalTag(String description){
         super(description);
+        this.validTypes = Quality.getValidTypes();
+        this.validQualities = Quality.getClassAndChildren();
     }
 
+    public FunctionalTag(String description, Set<Class<? extends Quality>> validQualities){
+        super(description);
+        this.validTypes = Quality.getValidTypes();
+        this.validQualities = validQualities;
+    }
 
+    public FunctionalTag(String description, Set<Class> validTypes, Set<Class<? extends Quality>> validQualities){
+        super(description);
+        this.validTypes = validTypes;
+        this.validQualities = validQualities;
+    }
+
+    public Set<Class> getValidTypes() {return validTypes;}
+    public void setValidTypes(Set<Class> validTypes) {this.validTypes = validTypes;}
+
+    public Set<Class<? extends Quality>> getValidQualities() {return validQualities;}
+    public void setValidQualities(Set<Class<? extends Quality>> validQualities) {this.validQualities = validQualities;}
 }

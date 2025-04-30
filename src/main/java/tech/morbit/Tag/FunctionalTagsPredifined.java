@@ -1,13 +1,16 @@
 package tech.morbit.Tag;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import tech.morbit.Quality.ChangingValue;
+import tech.morbit.Quality.ListValue;
+import tech.morbit.Quality.Range;
+import tech.morbit.Quality.RangedValue;
+
+import java.util.*;
 
 public class FunctionalTagsPredifined {
-    static ArrayList<FunctionalTag> functionalTags = new ArrayList<>();
+    static Set<FunctionalTag> functionalTags = new HashSet<>();
 
-    public static ArrayList<FunctionalTag> getFunctionalTagsPredifined() {
+    public static Set<FunctionalTag> getFunctionalTagsPredifined() {
         if(functionalTags.isEmpty()){
             functionalTagsPredifinedDefine();
         }
@@ -22,13 +25,17 @@ public class FunctionalTagsPredifined {
         functionalTags.addAll(tags);
     }
 
-    public static void functionalTagsPredifinedDefine(){
-        ArrayList<String> preset = new ArrayList<>(
-            Arrays.asList(
-                    "HP"
-                    )
-
-
-                );
+    public static void  functionalTagsPredifinedDefine(){
+        functionalTags = Set.of(
+                new FunctionalTag("Health", Set.of(int.class, double.class), Set.of(RangedValue.class)),
+                new FunctionalTag("Experience" , Set.of(int.class, double.class), Set.of(RangedValue.class)),
+                new FunctionalTag("Stamina" , Set.of(int.class, double.class), Set.of(RangedValue.class)),
+                new FunctionalTag("Mana" , Set.of(int.class, double.class), Set.of(RangedValue.class)),
+                new FunctionalTag("Sanity" , Set.of(int.class, double.class), Set.of(RangedValue.class)),
+                new FunctionalTag("Money" , Set.of(int.class, double.class), Set.of(ChangingValue.class)),
+                new FunctionalTag("StatusEffects", Set.of(ListValue.class)),
+                new FunctionalTag("AttackRange", Set.of(int.class, double.class, boolean.class), Set.of(Range.class)),
+                new FunctionalTag("Inventory", Set.of(ListValue.class))
+        );
     }
 }

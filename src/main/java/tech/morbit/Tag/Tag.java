@@ -1,7 +1,7 @@
 package tech.morbit.Tag;
 
 public class Tag {
-    private String description;;
+    protected String description;;
 
     public Tag(String description){
         if(!description.trim().isEmpty()){
