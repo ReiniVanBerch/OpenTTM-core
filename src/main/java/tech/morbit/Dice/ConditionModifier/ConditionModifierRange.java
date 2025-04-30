@@ -14,4 +14,9 @@ public class ConditionModifierRange<T extends Comparable<T>> extends ConditionMo
     public boolean check(Comparable roll) {
         return target1.check(roll) && target1.check(roll);
     }
+
+    @Override
+    public int compareTo(ConditionModifier o) {
+        return target1.target.compareTo(o.target);
+    }
 }
