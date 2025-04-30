@@ -1,6 +1,6 @@
 package tech.morbit.Dice.ConditionModifier;
 
-public class ConditionModifierSmallerEquals implements ConditionModifier {
+public class ConditionModifierSmallerEquals extends ConditionModifier {
 
     private Comparable target;
 
@@ -9,7 +9,7 @@ public class ConditionModifierSmallerEquals implements ConditionModifier {
     }
 
     @Override
-    public <T extends Comparable<T>> boolean check(T roll) {
-        return roll.compareTo((T) this.target) <= 0;
+    public boolean check(Comparable roll) {
+        return roll.compareTo( this.target) <= 0;
     }
 }

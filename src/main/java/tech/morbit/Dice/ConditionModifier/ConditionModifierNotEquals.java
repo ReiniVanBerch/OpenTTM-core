@@ -1,14 +1,13 @@
 package tech.morbit.Dice.ConditionModifier;
 
-public class ConditionModifierNotEquals implements ConditionModifier {
-    Comparable target = 0;
+public class ConditionModifierNotEquals<T extends Comparable<T>> extends ConditionModifier {
 
-    public <T extends Comparable<T>>ConditionModifierNotEquals(T target) {
+    public ConditionModifierNotEquals(T target) {
         this.target = target;
     };
 
     @Override
-    public <T extends Comparable<T>> boolean check(T roll) {
+    public  boolean check(Comparable roll) {
         return roll.compareTo((T) this.target) != 0;
     }
 

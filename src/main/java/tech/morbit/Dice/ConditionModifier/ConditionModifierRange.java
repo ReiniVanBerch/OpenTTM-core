@@ -1,17 +1,17 @@
 package tech.morbit.Dice.ConditionModifier;
 
-public class ConditionModifierRange implements ConditionModifier {
+public class ConditionModifierRange<T extends Comparable<T>> extends ConditionModifier {
 
-    ConditionModifier boundOne, boundTwo;
+    ConditionModifier target1, target2;
 
     //IF wrongly assigned, this will  always return false
     ConditionModifierRange(ConditionModifier boundOne, ConditionModifier boundTwo) {
-        this.boundOne = boundOne;
-        this.boundTwo = boundTwo;
+        this.target1 = boundOne;
+        this.target2 = boundTwo;
     }
 
     @Override
-    public  <T extends Comparable<T>> boolean check(T roll) {
-        return boundOne.check(roll) && boundTwo.check(roll);
+    public boolean check(Comparable roll) {
+        return target1.check(roll) && target1.check(roll);
     }
 }

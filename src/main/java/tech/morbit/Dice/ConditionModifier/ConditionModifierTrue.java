@@ -1,10 +1,15 @@
 package tech.morbit.Dice.ConditionModifier;
 
-public class ConditionModifierTrue implements ConditionModifier {
+public class ConditionModifierTrue<T extends Comparable<T>> extends ConditionModifier {
 
     @Override
-    public <T extends Comparable<T>> boolean check(T roll) {
+    public boolean check(Comparable roll) {
         return true;
     }
 
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
 }
