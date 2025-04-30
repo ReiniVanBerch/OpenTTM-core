@@ -61,8 +61,8 @@ public class Character {
         return qualitiesAsString;
     }
 
-    public <T extends Quality> void addQuality(T qualitiy) {
-        qualities.add(qualitiy);
+    public <T extends Quality> void addQuality(T quality) {
+        qualities.add(quality);
     }
 
 

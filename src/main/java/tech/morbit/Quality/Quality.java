@@ -1,10 +1,11 @@
 package tech.morbit.Quality;
 
 import tech.morbit.Exception.InvalidInputException;
-import tech.morbit.Functional.Functional;
+import tech.morbit.Tag.FunctionalTag;
 import tech.morbit.Tag.Tag;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -35,23 +36,39 @@ public abstract class Quality {
             Quality.class
     );
 
+    protected static final Set<Class<? extends Quality>> CLASS_AND_CHILDREN = Set.of(
+        Quality.class,
+        RangedValue.class,
+        Range.class,
+        ChangingValue.class,
+        FixedValue.class,
+        ListValue.class
+    );
+
     protected String name;
     protected ArrayList<Object> values;
-    protected ArrayList<Tag> tags = new ArrayList<>();
-    protected ArrayList<Functional> functionals = new ArrayList<>();
+    protected Set<Tag> tags = new HashSet<>();
+    protected Set<FunctionalTag> functionalsTags = new HashSet<>();
 
 
 
-    public <T> Quality(String name)  {
+    public Quality(String name)  {
         this.name = name;
     }
 
-    public <T> Quality(
-            String name,
-            ArrayList<T> values,
-            ArrayList<Tag> tags) throws InvalidInputException {
-                this(name);
-                this.tags.addAll(tags);
+    public Quality(
+        String name,
+        ArrayList<Object> values,
+        ArrayList<Tag> tags) throws InvalidInputException {
+            this(name);
+            this.tags.addAll(tags);
+
+            Class clazz = values.getClass();
+            if (!VALID_TYPES.contains(clazz)) {
+                throw new InvalidInputException("Invalid type: " + clazz.getSimpleName());
+            } else {
+                this.setValues(values);
+            }
     }
 
     public void setName(String name){this.name = name;}
@@ -66,7 +83,6 @@ public abstract class Quality {
     public Class getTypeOfValues(){
         return this.getValues().get(0).getClass();
     }
-
     public <T> void setValues(ArrayList<T> values) throws InvalidInputException {
         if(values.size() == valueCount){
             this.values = (ArrayList<Object>) values;
@@ -74,41 +90,42 @@ public abstract class Quality {
     }
 
     //Tagging
-    public ArrayList<Tag> getTags(){return this.tags;}
-    public ArrayList<Functional> getFunctionals(){return this.functionals;}
-
-    public void setTags(ArrayList<Tag> tags){this.tags = tags;}
+    public Set<Tag> getTags(){return this.tags;}
+    public void setTags(Set<Tag> tags){this.tags = tags;}
     public void addTag(Tag tag){this.tags.add(tag);}
     public void addTags(ArrayList<Tag> tags){this.tags.addAll(tags);}
-
     public void removeTag(Tag tag){this.tags.remove(tag);}
     public void removeTags(ArrayList<Tag> tags){
-        for(Tag tag : tags){
-            this.tags.remove(tag);
-        }
+        for(Tag tag : tags){this.tags.remove(tag);}
+    }
+
+    public Set<FunctionalTag> getFunctionalTags(){return this.functionalsTags;}
+    public void setFunctionalsTags(Set<FunctionalTag> functionalTags){this.functionalsTags = functionalsTags;}
+    public void addFunctionalTag(FunctionalTag functionalTag){functionalsTags.add(functionalTag);}
+    public void addFunctionalTAgs(ArrayList<FunctionalTag> functionalTags){this.functionalsTags.addAll(functionalTags);}
+    public void removeFunctionalTag(FunctionalTag functionalTag){functionalsTags.remove(functionalTag);}
+    public void removeFunctionalTags(ArrayList<FunctionalTag> functionalTags){
+        for(FunctionalTag functionalTag : functionalTags){this.functionalsTags.remove(functionalTag);}
     }
 
     //Strings
-    public String getValuesAsInputString(){
+    public String getValuesAsString(){
         String output = "";
         for(Object value : this.values){
-            output += value.toString() +";";
+            output += value.toString() +"; ";
         }
         output = output.substring(0,output.length()-1);
         return output;
     }
     @Override
-    public String toString(){return getClass().getSimpleName();}
+    public String toString()
+    {
+        return this.name+ ": " + getValuesAsString();
+    }
 
-    public static <T extends Quality> ArrayList<Class<? extends Quality>> getClassAndChildren(){
-        ArrayList<Class<? extends  Quality>> q = new ArrayList<>();
-        q.add(Quality.class);
-        q.add(RangedValue.class);
-        q.add(RangedValue.class);
-        q.add(ChangingValue.class);
-        q.add(FixedValue.class);
-        q.add(ListValue.class);
-        //q
-        return q;
+    public static <T extends Quality> Set<Class<? extends Quality>> getClassAndChildren(){
+
+
+        return CLASS_AND_CHILDREN;
     }
 }
