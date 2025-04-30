@@ -1,15 +1,14 @@
 package tech.morbit.Dice.DiceModifier.DiceModifierDuring;
 
-public class DiceModifierDuringMathAdd extends DiceModifierDuringMath implements DiceModifierDuring {
+public class DiceModifierDuringMathModulo extends DiceModifierDuringMath implements DiceModifierDuring{
 
     @Override
     public int apply(int roll){
         if(check(roll)) {
-            return roll + value;
+            return roll % value;
         }
         else{
             return roll;
         }
     }
-
 }

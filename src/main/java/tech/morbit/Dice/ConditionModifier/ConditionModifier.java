@@ -4,7 +4,7 @@ package tech.morbit.Dice.ConditionModifier;
 public abstract class ConditionModifier<T extends Comparable<T>> implements Comparable<ConditionModifier<T>> {
 
     protected T target;
-    abstract boolean check(T roll);
+    public abstract boolean check(T roll);
 
     public T getTarget() {
         return target;

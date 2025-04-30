@@ -2,8 +2,7 @@ package tech.morbit.Dice.ConditionModifier;
 
 public  class ConditionModifierEquals<T extends Comparable<T>> extends ConditionModifier{
 
-
-    public  ConditionModifierEquals(T target) {
+    public ConditionModifierEquals(T target) {
         this.target = target;
     };
 
