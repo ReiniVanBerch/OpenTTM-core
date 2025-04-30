@@ -6,6 +6,5 @@ import tech.morbit.Dice.ConditionModifier.ConditionModifierTrue;
 import java.util.ArrayList;
 
 public interface DiceModifierCollector {
-    ConditionModifier conditionModifier = new ConditionModifierTrue();
     int apply(ArrayList<Integer> input);
 }

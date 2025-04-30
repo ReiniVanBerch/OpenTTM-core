@@ -2,16 +2,17 @@ package tech.morbit.Dice.DiceModifier.DiceModifierCollector;
 
 import tech.morbit.Dice.ConditionModifier.ConditionModifier;
 import tech.morbit.Dice.ConditionModifier.ConditionModifierTrue;
+import tech.morbit.Dice.DiceModifier.DiceModifier;
+import tech.morbit.Dice.DiceModifier.DiceModifierDuring.DiceModifierDuringMath;
 
 import java.util.ArrayList;
 
-public class DiceModifierCollectorSum implements DiceModifierCollector {
+public class DiceModifierCollectorSum extends DiceModifier implements DiceModifierCollector {
 
-    ConditionModifier conditionModifier = new ConditionModifierTrue();
+    public DiceModifierCollectorSum() {}
 
-    public DiceModifierCollectorSum(){}
-    public DiceModifierCollectorSum(ConditionModifier conditionModifier){
-        this.conditionModifier = conditionModifier;
+    public DiceModifierCollectorSum(ConditionModifier conditionModifier) {
+        super(conditionModifier);
     }
 
     @Override

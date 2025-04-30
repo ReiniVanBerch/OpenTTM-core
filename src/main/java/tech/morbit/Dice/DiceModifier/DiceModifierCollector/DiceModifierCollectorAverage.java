@@ -2,17 +2,17 @@ package tech.morbit.Dice.DiceModifier.DiceModifierCollector;
 
 import tech.morbit.Dice.ConditionModifier.ConditionModifier;
 import tech.morbit.Dice.ConditionModifier.ConditionModifierTrue;
+import tech.morbit.Dice.DiceModifier.DiceModifier;
 
 import java.util.ArrayList;
 
-public class DiceModifierCollectorAverage implements DiceModifierCollector {
+public class DiceModifierCollectorAverage extends DiceModifier implements DiceModifierCollector {
 
-    ConditionModifier conditionModifier = new ConditionModifierTrue();
 
     public DiceModifierCollectorAverage() {}
 
     public DiceModifierCollectorAverage(ConditionModifier conditionModifier) {
-        this.conditionModifier = conditionModifier;
+        super(conditionModifier);
     }
 
     @Override
