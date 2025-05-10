@@ -1,6 +1,7 @@
 package tech.morbit.Deck;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Deck {
@@ -12,6 +13,27 @@ public class Deck {
 
 
     public <T> Deck(List<T> cards) {
+        this.addCards(cards);
+    }
+
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void addCard(String card) {
+        this.cards.add(new Card(card));
+    }
+
+    public void addCard(Card card) {
+        this.cards.add(card);
+    }
+
+    public <T> void addCards(List<T> cards) {
+
         this.cards = new ArrayList<>();
 
         if (!cards.isEmpty()) {
@@ -29,18 +51,13 @@ public class Deck {
                 throw new IllegalArgumentException("Unsupported card type: " + first.getClass());
             }
         }
+
     }
 
-    public void addCard(String card) {
-        this.cards.add(new Card(card));
-    }
 
-    public void addCard(Card card) {
-        this.cards.add(card);
-    }
 
-    public void addCards(List<Card> cards) {
-        this.cards.addAll(cards);
+    public void shuffleDeck(){
+        Collections.shuffle(cards);
     }
 
 

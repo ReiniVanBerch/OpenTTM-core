@@ -1,13 +1,14 @@
-package tech.morbit.Tag;
+package tech.morbit.Presets;
 
 import tech.morbit.Quality.ChangingValue;
 import tech.morbit.Quality.ListValue;
 import tech.morbit.Quality.Range;
 import tech.morbit.Quality.RangedValue;
+import tech.morbit.Tag.FunctionalTag;
 
 import java.util.*;
 
-public class FunctionalTagsPredifined {
+public class FunctionalTagsPresets {
     static Set<FunctionalTag> functionalTags = new HashSet<>();
 
     public static Set<FunctionalTag> getFunctionalTagsPredifined() {

@@ -2,6 +2,7 @@ package tech.morbit.Features;
 
 import tech.morbit.Deck.Deck;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class DeckBuilder {
@@ -30,11 +31,20 @@ public class DeckBuilder {
     }
 
     public void addSuit(String suit){
-        suits.add(suit);
+        this.suits.add(suit);
     }
 
+    public void addSuits(List<String> suits{
+        this.suits.addAll(suits);
+    }
+
+
     public void addName(String name){
-        names.add(name);
+        this.names.add(name);
+    }
+
+    public void addNames(List<String> names){
+        this.names.addAll(names);
     }
 
     public void generateDeck(){
@@ -48,7 +58,7 @@ public class DeckBuilder {
     }
 
     public void shuffleDeck(){
-
+        this.deck.shuffleDeck();
     }
 
 }
