@@ -19,4 +19,5 @@ module tech.morbit {
     exports tech.morbit.Dice.DiceModifier.DiceModifierDuring;
     exports tech.morbit.Dice.DiceModifier.DiceModifierFinal;
     exports tech.morbit.Dice.DiceModifier.DiceModifierCollector;
+    exports tech.morbit.Deck;
 }
