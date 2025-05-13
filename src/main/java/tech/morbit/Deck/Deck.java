@@ -27,9 +27,13 @@ public class Deck {
     public void addCard(String card) {
         this.cards.add(new Card(card));
     }
-
-    public void addCard(Card card) {
-        this.cards.add(card);
+    public void addCard(String card, int count) {
+        addCard(new Card(card), count);
+    }
+    public void addCard(Card card, int count) {
+        for (int i = 0; i < count; i++) {
+            this.cards.add(card);
+        }
     }
 
     public <T> void addCards(List<T> cards) {
@@ -54,6 +58,11 @@ public class Deck {
 
     }
 
+    public <T> void addCards(List<T> cards, int count) {
+        for (int i = 0; i < count; i++) {
+            addCards(cards);
+        }
+    }
 
 
     public void shuffleDeck(){
