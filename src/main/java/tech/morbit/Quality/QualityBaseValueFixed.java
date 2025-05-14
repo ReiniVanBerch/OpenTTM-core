@@ -19,18 +19,18 @@ import tech.morbit.Exception.InvalidInputException;
 
 import java.util.ArrayList;
 
-public class FixedValue extends Quality{
+public class QualityBaseValueFixed extends QualityBase {
 
     final public int valueCount = 1;
 
     private Object fixedValue;
 
-    public <T> FixedValue(String comment, ArrayList<T> fixedValue) throws InvalidInputException {
+    public <T> QualityBaseValueFixed(String comment, ArrayList<T> fixedValue) throws InvalidInputException {
         super(comment);
 
         if(fixedValue.size() == this.valueCount &&
                 (VALID_TYPES.contains(fixedValue.getFirst().getClass()) ||
-                        Quality.class.isAssignableFrom(fixedValue.getFirst().getClass())))
+                        QualityBase.class.isAssignableFrom(fixedValue.getFirst().getClass())))
         {
             this.values = (ArrayList<Object>) fixedValue;
             this.fixedValue = fixedValue.get(0);

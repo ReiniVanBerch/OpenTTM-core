@@ -18,18 +18,18 @@ import java.util.ArrayList;
  *
  */
 
-public class RangedValue extends Quality {
+public class QualityBaseRangeValue extends QualityBase {
 
     final public int valueCount = 3;
 
     private Object lowerBound, upperBound, value;
 
-    public <T> RangedValue(String name, ArrayList<T> rangedValue) throws InvalidInputException {
+    public <T> QualityBaseRangeValue(String name, ArrayList<T> rangedValue) throws InvalidInputException {
         super(name);
 
         if(rangedValue.size() == this.valueCount &&
             (VALID_TYPES.contains(rangedValue.getFirst().getClass()) ||
-                Quality.class.isAssignableFrom(rangedValue.getFirst().getClass())))
+                QualityBase.class.isAssignableFrom(rangedValue.getFirst().getClass())))
         {
             this.values = (ArrayList<Object>) rangedValue;
             this.lowerBound = rangedValue.get(0);

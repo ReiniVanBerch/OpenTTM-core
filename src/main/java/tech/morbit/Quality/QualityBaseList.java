@@ -15,17 +15,17 @@ import tech.morbit.Exception.InvalidInputException;
 
 import java.util.ArrayList;
 
-public class ListValue extends Quality{
+public class QualityBaseList extends QualityBase {
 
     final public int valueCount = Integer.MAX_VALUE;
 
     private ArrayList list;
 
-    public <T> ListValue(String comment, ArrayList<T> list) throws InvalidInputException {
+    public <T> QualityBaseList(String comment, ArrayList<T> list) throws InvalidInputException {
         super(comment);
 
         if(VALID_TYPES.contains(list.getFirst().getClass()) ||
-                Quality.class.isAssignableFrom(list.getFirst().getClass())){
+                QualityBase.class.isAssignableFrom(list.getFirst().getClass())){
             this.values = (ArrayList<Object>) list;
             this.list = list;
         } else{

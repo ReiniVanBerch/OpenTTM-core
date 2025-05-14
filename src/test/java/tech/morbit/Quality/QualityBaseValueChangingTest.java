@@ -1,8 +1,5 @@
 package tech.morbit.Quality;
 
-import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import tech.morbit.Exception.InvalidInputException;
@@ -10,9 +7,9 @@ import tech.morbit.Exception.InvalidInputException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ChangingValueTest {
+public class QualityBaseValueChangingTest {
 
-    static private ChangingValue cv;
+    static private QualityBaseValueChanging cv;
 
 
     @Test
@@ -20,7 +17,7 @@ public class ChangingValueTest {
     public void testConstructor_Valid() {
         ArrayList al = new ArrayList(Arrays.asList(1));
         try {
-            ChangingValue cv = new ChangingValue("Test", al);
+            QualityBaseValueChanging cv = new QualityBaseValueChanging("Test", al);
         } catch (InvalidInputException e) {
             throw new RuntimeException(e);
         }

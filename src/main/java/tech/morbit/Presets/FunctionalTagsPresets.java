@@ -1,9 +1,9 @@
 package tech.morbit.Presets;
 
-import tech.morbit.Quality.ChangingValue;
-import tech.morbit.Quality.ListValue;
-import tech.morbit.Quality.Range;
-import tech.morbit.Quality.RangedValue;
+import tech.morbit.Quality.QualityBaseValueChanging;
+import tech.morbit.Quality.QualityBaseList;
+import tech.morbit.Quality.QualityBaseRange;
+import tech.morbit.Quality.QualityBaseRangeValue;
 import tech.morbit.Tag.FunctionalTag;
 
 import java.util.*;
@@ -28,15 +28,15 @@ public class FunctionalTagsPresets {
 
     public static void  functionalTagsPredifinedDefine(){
         functionalTags = Set.of(
-                new FunctionalTag("Health", Set.of(int.class, double.class), Set.of(RangedValue.class)),
-                new FunctionalTag("Experience" , Set.of(int.class, double.class), Set.of(RangedValue.class)),
-                new FunctionalTag("Stamina" , Set.of(int.class, double.class), Set.of(RangedValue.class)),
-                new FunctionalTag("Mana" , Set.of(int.class, double.class), Set.of(RangedValue.class)),
-                new FunctionalTag("Sanity" , Set.of(int.class, double.class), Set.of(RangedValue.class)),
-                new FunctionalTag("Money" , Set.of(int.class, double.class), Set.of(ChangingValue.class)),
-                new FunctionalTag("StatusEffects", Set.of(ListValue.class)),
-                new FunctionalTag("AttackRange", Set.of(int.class, double.class, boolean.class), Set.of(Range.class)),
-                new FunctionalTag("Inventory", Set.of(ListValue.class))
+                new FunctionalTag("Health", Set.of(int.class, double.class), Set.of(QualityBaseRangeValue.class)),
+                new FunctionalTag("Experience" , Set.of(int.class, double.class), Set.of(QualityBaseRangeValue.class)),
+                new FunctionalTag("Stamina" , Set.of(int.class, double.class), Set.of(QualityBaseRangeValue.class)),
+                new FunctionalTag("Mana" , Set.of(int.class, double.class), Set.of(QualityBaseRangeValue.class)),
+                new FunctionalTag("Sanity" , Set.of(int.class, double.class), Set.of(QualityBaseRangeValue.class)),
+                new FunctionalTag("Money" , Set.of(int.class, double.class), Set.of(QualityBaseValueChanging.class)),
+                new FunctionalTag("StatusEffects", Set.of(QualityBaseList.class)),
+                new FunctionalTag("AttackRange", Set.of(int.class, double.class, boolean.class), Set.of(QualityBaseRange.class)),
+                new FunctionalTag("Inventory", Set.of(QualityBaseList.class))
         );
     }
 }

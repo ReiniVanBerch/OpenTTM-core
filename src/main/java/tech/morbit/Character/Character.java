@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Everything else, whether it's HP or XP, Constituion or Insanity, will be given him in an list.
  * This list contains "qualities" these define our characters.
  *
- * For the list of qualities see {@link Quality}
+ * For the list of qualities see {@link QualityBase}
  * TODO:
  * -Include more Checks
  * -Comment things better
@@ -24,12 +24,12 @@ import java.util.ArrayList;
 public class Character {
 
 
-    ArrayList<Quality> qualities = new ArrayList<>();
+    ArrayList<QualityBase> qualities = new ArrayList<>();
     public Character(String name) {
         this.name = name.strip();
     }
 
-    public Character(String name, ArrayList<Quality> qualities) {
+    public Character(String name, ArrayList<QualityBase> qualities) {
         this(name);
         this.qualities = qualities;
     }
@@ -44,24 +44,24 @@ public class Character {
     }
 
 
-    public void setQualities (ArrayList<Quality> qualities){
+    public void setQualities (ArrayList<QualityBase> qualities){
         this.qualities = qualities;
     }
 
-    public void setQuality (int index, Quality quality){
-        this.qualities.set(index, quality);
+    public void setQuality (int index, QualityBase qualityBase){
+        this.qualities.set(index, qualityBase);
     }
 
-    public ArrayList<Quality> getQualities() { return qualities; }
+    public ArrayList<QualityBase> getQualities() { return qualities; }
     public ArrayList<String> getQualitiesAsString() {
         ArrayList<String> qualitiesAsString = new ArrayList<>();
-        for (Quality q : this.qualities) {
+        for (QualityBase q : this.qualities) {
             qualitiesAsString.add(q.getName());
         }
         return qualitiesAsString;
     }
 
-    public <T extends Quality> void addQuality(T quality) {
+    public <T extends QualityBase> void addQuality(T quality) {
         qualities.add(quality);
     }
 
@@ -70,7 +70,7 @@ public class Character {
     public String toString() {
 
         String output = name + " ~ \n";
-        for (Quality q : qualities) {
+        for (QualityBase q : qualities) {
             output += q.toString() + "\n";
         }
 

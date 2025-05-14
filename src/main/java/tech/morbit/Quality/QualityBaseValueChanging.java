@@ -17,18 +17,18 @@ import tech.morbit.Exception.InvalidTypeException;
 
 import java.util.ArrayList;
 
-public class ChangingValue extends Quality {
+public class QualityBaseValueChanging extends QualityBase {
 
     static final public int valueCount = 1;
 
     private Object changingValue;
 
-    public <T> ChangingValue(String comment, ArrayList<T> changingValue) throws InvalidInputException {
+    public <T> QualityBaseValueChanging(String comment, ArrayList<T> changingValue) throws InvalidInputException {
         super(comment);
 
         if(changingValue.size() == this.valueCount &&
                 (VALID_TYPES.contains(changingValue.getFirst().getClass()) ||
-                        Quality.class.isAssignableFrom(changingValue.getFirst().getClass())))
+                        QualityBase.class.isAssignableFrom(changingValue.getFirst().getClass())))
         {
             this.values = (ArrayList<Object>) changingValue;
             this.changingValue = changingValue.get(0);
