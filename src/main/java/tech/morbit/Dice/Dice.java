@@ -5,6 +5,7 @@ import tech.morbit.Dice.DiceModifier.DiceModifierCollector.DiceModifierCollector
 import tech.morbit.Dice.DiceModifier.DiceModifierCollector.DiceModifierCollectorSum;
 import tech.morbit.Dice.DiceModifier.DiceModifierDuring.DiceModifierDuring;
 import tech.morbit.Dice.DiceModifier.DiceModifierFinal.DiceModifierFinal;
+import tech.morbit.Dice.DiceModifier.DiceModifierThinner.DiceModifierThinner;
 
 import java.util.*;
 
@@ -25,6 +26,7 @@ public class Dice {
 
     private List<DiceModifierDuring> durings;
     private List<DiceModifierAfter> afters;
+    private List<DiceModifierThinner> thinners;
     private DiceModifierCollector collector;
     private List<DiceModifierFinal> finals;
 
@@ -83,6 +85,14 @@ public class Dice {
     private ArrayList<Integer> applyModifiersAfter(ArrayList<Integer> rolls) {
         for (int i = 0; i < this.afters.size(); i++) {
             rolls = this.afters.get(i).apply(rolls);
+        }
+        return rolls;
+    }
+
+    //What should be done with all the rolls after they have been rolled
+    private ArrayList<Integer> applyModifiersThinners(ArrayList<Integer> rolls) {
+        for (int i = 0; i < this.thinners.size(); i++) {
+            rolls = this.thinners.get(i).apply(rolls);
         }
         return rolls;
     }
